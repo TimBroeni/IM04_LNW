@@ -71,3 +71,5 @@ Um dieses Boilerplate auf dem eigenen Web-Server zu installieren, führe folgend
 - Beinhaltet die Konfigurationsdatei für die Datenbankverbindung.
 - Beinhaltet die Datei `database.sql`, die die `users` Tabelle erstellt.
 - Beinhaltet die Datei `config.php`, die die Konfiguration des Backends enthält.
+
+Push-Test.
