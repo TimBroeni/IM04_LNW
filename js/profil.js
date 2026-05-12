@@ -9,12 +9,16 @@ async function loadProfile() {
     const result = await response.json();
     console.log("Profile data:", result);
 
+    document.querySelector("#firstname").value = result.firstname || "";
+    document.querySelector("#lastname").value = result.lastname || "";
+
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
 loadProfile();
+
 
 document.getElementById("profilForm")
   .addEventListener("submit", async (e) => {
@@ -34,11 +38,14 @@ document.getElementById("profilForm")
       const result = await response.text();
       console.log("Update response:", result);
 
+      loadProfile(); // Refresh profile data after update
+
       // if (result.status === "success") {
       //   alert("Profile updated successfully!");
       // } else {
       //   alert(result.message || "Profile update failed.");
       // }
+
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong!");

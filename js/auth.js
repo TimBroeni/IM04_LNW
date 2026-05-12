@@ -24,4 +24,4 @@ async function checkAuth() {
 }
 
 // Check auth when page loads
-//window.addEventListener("load", checkAuth);
+window.addEventListener("load", checkAuth);

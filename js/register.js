@@ -6,6 +6,8 @@ document
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
+    const firstname = document.getElementById("firstname").value.trim();
+    const lastname = document.getElementById("lastname").value.trim();
 
     try {
       const response = await fetch("api/register.php", {
@@ -13,7 +15,7 @@ document
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, firstname, lastname }),
       });
       const result = await response.json();
 
