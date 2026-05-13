@@ -1,49 +1,31 @@
 @media (min-width: 1024px) {
-  /**======================HEADER======================**/
+  body.form-page {
+    padding: 40px 28px;
+  }
 
+  body.form-page .form-shell {
+    width: min(100%, 620px);
+    gap: 22px;
+  }
 
+  body.form-page .brand-mark {
+    width: 128px;
+  }
 
+  body.form-page .form-card {
+    border-radius: 32px;
+    padding: 28px;
+  }
 
+  body.form-page .profile-title {
+    font-size: 2.05rem;
+  }
 
-  /**======================FOOTER======================**/
+  body.form-page .profile-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-
-
-
-
-
-
-
-  /**======================LOGIN======================**/
-
-
-
-
-
-  
-
-  /**======================DASHBOARD======================**/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  body.form-page .form-note {
+    max-width: 32ch;
+  }
 }

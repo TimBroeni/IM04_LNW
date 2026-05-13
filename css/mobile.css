@@ -1,0 +1,219 @@
+body.form-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 32px;
+  text-align: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 42%),
+    linear-gradient(180deg, var(--page-top) 0%, #f4faf6 42%, var(--page-bottom) 100%);
+}
+
+body.form-page .form-shell {
+  width: min(100%, 560px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+body.form-page .form-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+body.form-page .brand-mark {
+  width: 116px;
+  height: auto;
+  filter: drop-shadow(0 12px 22px rgba(15, 23, 42, 0.08));
+}
+
+body.form-page .brand-wordmark {
+  margin: 0;
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+}
+
+body.form-page .brand-subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+body.form-page .form-card {
+  width: 100%;
+  border-radius: 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  padding: 22px 18px 24px;
+  backdrop-filter: blur(10px);
+}
+
+body.form-page .form-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+body.form-page .form-tab {
+  display: block;
+  border-radius: 16px;
+  padding: 13px 16px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-soft);
+  background: var(--surface);
+}
+
+body.form-page .form-tab.is-active {
+  color: #ffffff;
+  background: linear-gradient(180deg, #19b540 0%, var(--accent-dark) 100%);
+  box-shadow: 0 10px 22px rgba(22, 163, 74, 0.22);
+}
+
+body.form-page .form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+body.form-page .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+body.form-page .field label {
+  width: auto;
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+body.form-page .field-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  min-height: 54px;
+  border-radius: 15px;
+  border: 1px solid var(--input-border);
+  background: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.form-page .field-input:focus-within {
+  border-color: rgba(22, 163, 74, 0.5);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+}
+
+body.form-page .field-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  flex: 0 0 auto;
+}
+
+body.form-page .field-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+body.form-page .field-input input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  padding: 0;
+  font: inherit;
+  color: var(--text-main);
+  background: transparent;
+  min-width: 0;
+}
+
+body.form-page .field-input input::placeholder {
+  color: #94a3b8;
+}
+
+body.form-page .form-button,
+body.form-page .secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+body.form-page .form-button {
+  color: #ffffff;
+  background: linear-gradient(180deg, #19b540 0%, var(--accent-dark) 100%);
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.24);
+}
+
+body.form-page .secondary-button {
+  color: var(--text-soft);
+  background: var(--surface-strong);
+}
+
+body.form-page .form-button:active,
+body.form-page .secondary-button:active,
+body.form-page .form-tab:active {
+  transform: translateY(1px);
+}
+
+body.form-page .form-button:focus-visible,
+body.form-page .secondary-button:focus-visible,
+body.form-page .form-tab:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.22);
+  outline-offset: 3px;
+}
+
+body.form-page .profile-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+body.form-page .profile-title {
+  margin: 0 0 18px;
+  font-size: 1.9rem;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+}
+
+body.form-page .form-note {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--text-soft);
+  font-size: 1rem;
+  text-align: center;
+}
+
+body.form-page .link-button {
+  text-align: center;
+}

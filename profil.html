@@ -1,31 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profil</title>
-    <link rel="icon" type="image/png" href="/images/Favicon.png">
+    <link rel="icon" type="image/png" href="/images/sortino_favicon.png">
     <link rel="stylesheet" href="/css/master.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
   </head>
-  <body>
-    <h1>Profil</h1>
+  <body class="form-page">
+    <main class="form-shell">
+      <section class="form-brand" aria-label="Sortino">
+        <img src="/images/sortino_marke.png" alt="Sortino" class="brand-mark" />
+        <h1 class="brand-wordmark">Sortino</h1>
+        <p class="brand-subtitle">Profil bearbeiten</p>
+      </section>
 
-    <form id="profilForm">
-      <div>
-        <label>Vorname</label>
-        <input type="text" id="firstname" required />
-      </div>
-      <div>
-        <label>Nachname</label>
-        <input type="text" id="lastname" />
-      </div>
-      <button type="submit">Anpassen</button>
-    </form>
-    <button id="logoutBtn">Logout</button>
-    <a href="index.html">
-      <button>Zurück</button>
-    </a>
+      <section class="form-card">
+        <h2 class="profile-title">Profil</h2>
+
+        <form id="profilForm" class="form-layout">
+          <div class="field">
+            <label for="firstname">Vorname</label>
+            <div class="field-input">
+              <span class="field-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M5 19c1.5-3.3 4.1-5 7-5s5.5 1.7 7 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </span>
+              <input type="text" id="firstname" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="lastname">Nachname</label>
+            <div class="field-input">
+              <span class="field-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M5 19c1.5-3.3 4.1-5 7-5s5.5 1.7 7 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </span>
+              <input type="text" id="lastname" />
+            </div>
+          </div>
+
+          <button class="form-button" type="submit">Anpassen</button>
+        </form>
+
+        <div class="profile-actions">
+          <button id="logoutBtn" class="secondary-button" type="button">Logout</button>
+          <a class="secondary-button link-button" href="index.html">Zurück</a>
+        </div>
+      </section>
+    </main>
 
     <script src="/js/auth.js"></script>
     <script src="/js/data.js"></script>
