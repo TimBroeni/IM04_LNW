@@ -1,19 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>SORTINO</title>
+    <title>Dashboard</title>
     <link rel="icon" type="image/png" href="/images/Favicon.png">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
   </head>
   <body>
-    <h1>Welcome to SORTINO</h1>
+    <h1>Sortino Dashboard</h1>
 
-    <div class="navigation">
-      <ul>
-        <li><a href="/html/login.html">Login</a></li>
-        <li><a href="/html/register.html">Register</a></li>
-      </ul>
+    <!-- This is where we'll dynamically show the protected content -->
+    <div id="protectedContent">
+      <h2>Welcome, <span id="firstname"></span></h2>
     </div>
+    <p>Dies ist die Homepage des Dashboards, glaube ich</p>
+
+    <button id="logoutBtn">Logout</button>
+    <a href="profil.html">
+      <button id="editProfileBtn">Profil bearbeiten</button>
+    </a>
+    <footer>
+      <div id="footer_icons">
+        <a href="index.html">
+          <p>Dashboard</p>
+        </a>
+        <a href="spielzeuge.html">
+          <p>Spielzeuge</p>
+        </a>
+        <a href="einstellungen.html">
+          <p>Einstellungen</p>
+        </a>
+      </div>
+    </footer>
+    <script src="/js/auth.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="/js/dashboard.js"></script>
   </body>
+
 </html>

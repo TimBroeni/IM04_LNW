@@ -1,15 +1,8 @@
 
 async function loadProfile() {
   try {
-    const response = await fetch("/api/dashboard.php", {
-      credentials: "include",
-    });
-
-    const result = await response.json();
-    console.log("Profile data-Dashboard:", result);
-
-    document.querySelector("#firstname").textContent = result.firstname || "";
-
+    const user = await userData();
+    document.querySelector("#firstname").textContent = user.firstname || "";
 
   } catch (error) {
     console.error(error)
