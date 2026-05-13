@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value.trim();
 
   try {
-    const response = await fetch("api/login.php", {
+    const response = await fetch("/api/login.php", {
       method: "POST",
       // credentials: 'include', // uncomment if front-end & back-end are on different domains
       headers: { "Content-Type": "application/json" },
@@ -15,8 +15,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      // alert("Login successful!");
-      window.location.href = "protected.html";
+      alert("Login successful!");
+      window.location.href = "dashboard.html";
     } else {
       alert(result.message || "Login failed.");
     }

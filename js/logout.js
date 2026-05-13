@@ -1,11 +1,8 @@
 // logout.js
 document.getElementById("logoutBtn").addEventListener("click", async (e) => {
-  // Prevent the default button behavior
-  e.preventDefault();
-
   try {
-    const response = await fetch("api/logout.php", {
-      method: "GET",
+    const response = await fetch("/api/logout.php", {
+      method: "POST",
       credentials: "include",
     });
 
@@ -13,7 +10,7 @@ document.getElementById("logoutBtn").addEventListener("click", async (e) => {
 
     if (result.status === "success") {
       // Redirect to login page after successful logout
-      window.location.href = "index.html";
+      window.location.href = "/login.html";
     } else {
       console.error("Logout failed");
       alert("Logout failed. Please try again.");
