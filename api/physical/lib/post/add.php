@@ -39,6 +39,12 @@ $update->execute(['id' => $new_toy->id, 'weight' => $input_weight]);
 $insert = $pdo->prepare("INSERT INTO toy_events (timestamp, toy_id, box_id, movement) VALUES (:timestamp, :toy_id, :box_id, :movement)");
 $insert->execute(['timestamp' => time(), 'toy_id' => $new_toy->id, 'box_id' => $box->id, 'movement' => 1]);
 
+/**
+ * turn off add mode from the box when done
+ */
+$update = $pdo->prepare("UPDATE boxes SET add_mode = :add_mode WHERE id=:id");
+$update->execute(['id' => $box->id, 'add_mode' => 0]);
+
 $return_data = [
   'name' => $new_toy->name
 ];
