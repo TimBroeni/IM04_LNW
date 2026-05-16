@@ -11,14 +11,26 @@
 </head>
 <body>
     <main>
-        <h1>Haushalt anlegen</h1>
-        <p>Du hast noch keinen Haushalt. Lege jetzt einen neuen an.</p>
+        <h1>Haushalt verwalten</h1>
+        <p>Du kannst entweder einen neuen Haushalt erstellen oder einem bestehenden Haushalt mit Code beitreten.</p>
 
-        <form id="householdForm">
-            <label for="household_name">Haushaltsname</label>
-            <input type="text" id="household_name" name="household_name" required />
-            <button type="submit">Haushalt erstellen</button>
-        </form>
+        <section>
+            <h2>Neuen Haushalt erstellen</h2>
+            <form id="createHouseholdForm">
+                <label for="household_name">Haushaltsname</label>
+                <input type="text" id="household_name" name="household_name" required />
+                <button type="submit">Haushalt erstellen</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Bestehendem Haushalt beitreten</h2>
+            <form id="joinHouseholdForm">
+                <label for="household_code">Haushaltscode</label>
+                <input type="text" id="household_code" name="household_code" maxlength="6" required />
+                <button type="submit">Haushalt beitreten</button>
+            </form>
+        </section>
 
         <p id="householdMessage"></p>
     </main>

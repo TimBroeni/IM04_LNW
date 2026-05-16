@@ -18,7 +18,7 @@ if (!is_array($input)) {
     $input = $_POST;
 }
 
-$householdName = trim($input['household_name'] ?? '');
+$action = trim($input['action'] ?? '');
 
 $stmt = $pdo->prepare('SELECT household_id FROM users WHERE id = :user_id');
 $stmt->execute([':user_id' => $userId]);
@@ -32,47 +32,96 @@ if (!$user) {
 
 if (!empty($user['household_id'])) {
     echo json_encode([
-        "status" => "success",
-        "message" => "User already has a household",
-        "household_id" => (int) $user['household_id']
+        'status' => 'success',
+        'message' => 'User already has a household',
+        'household_id' => (int) $user['household_id'],
     ]);
     exit;
 }
-
-if ($householdName === '') {
-    http_response_code(400);
-    echo json_encode(["status" => "error", "message" => "household_name is required"]);
-    exit;
-}
-
-$code = generateHouseholdCode();
-
-$pdo->beginTransaction();
 
 try {
-    $stmt = $pdo->prepare('INSERT INTO households (name, code) VALUES (:name, :code)');
-    $stmt->execute([
-        ':name' => $householdName,
-        ':code' => $code,
-    ]);
+    if ($action === 'create') {
+        $householdName = trim($input['household_name'] ?? '');
 
-    $householdId = (int) $pdo->lastInsertId();
+        if ($householdName === '') {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "household_name is required"]);
+            exit;
+        }
 
-    $stmt = $pdo->prepare('UPDATE users SET household_id = :household_id WHERE id = :user_id');
-    $stmt->execute([
-        ':household_id' => $householdId,
-        ':user_id' => $userId,
-    ]);
+        $code = generateHouseholdCode();
 
-    $pdo->commit();
+        $pdo->beginTransaction();
 
-    $_SESSION['household_id'] = $householdId;
+        $stmt = $pdo->prepare('INSERT INTO households (name, code) VALUES (:name, :code)');
+        $stmt->execute([
+            ':name' => $householdName,
+            ':code' => $code,
+        ]);
 
-    echo json_encode([
-        'status' => 'success',
-        'household_id' => $householdId,
-        'code' => $code,
-    ]);
+        $householdId = (int) $pdo->lastInsertId();
+
+        $stmt = $pdo->prepare('UPDATE users SET household_id = :household_id WHERE id = :user_id');
+        $stmt->execute([
+            ':household_id' => $householdId,
+            ':user_id' => $userId,
+        ]);
+
+        $pdo->commit();
+
+        $_SESSION['household_id'] = $householdId;
+
+        echo json_encode([
+            'status' => 'success',
+            'action' => 'create',
+            'household_id' => $householdId,
+            'code' => $code,
+        ]);
+        exit;
+    }
+
+    if ($action === 'join') {
+        $code = strtoupper(trim($input['code'] ?? ''));
+
+        if ($code === '') {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "code is required"]);
+            exit;
+        }
+
+        $stmt = $pdo->prepare('SELECT id, name, code FROM households WHERE code = :code LIMIT 1');
+        $stmt->execute([':code' => $code]);
+        $household = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$household) {
+            http_response_code(404);
+            echo json_encode(["status" => "error", "message" => "Household code not found"]);
+            exit;
+        }
+
+        $pdo->beginTransaction();
+
+        $stmt = $pdo->prepare('UPDATE users SET household_id = :household_id WHERE id = :user_id');
+        $stmt->execute([
+            ':household_id' => (int) $household['id'],
+            ':user_id' => $userId,
+        ]);
+
+        $pdo->commit();
+
+        $_SESSION['household_id'] = (int) $household['id'];
+
+        echo json_encode([
+            'status' => 'success',
+            'action' => 'join',
+            'household_id' => (int) $household['id'],
+            'household_name' => $household['name'],
+        ]);
+        exit;
+    }
+
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Invalid action"]);
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
@@ -81,7 +130,7 @@ try {
     http_response_code(500);
     echo json_encode([
         'status' => 'error',
-        'message' => 'Could not create household'
+        'message' => 'Could not process household request'
     ]);
 }
 
