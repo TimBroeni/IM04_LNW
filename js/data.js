@@ -4,6 +4,11 @@ async function userData() {
       credentials: "include",
     });
 
+    if (response.status === 401) {
+      window.location.href = "/login.html";
+      return null;
+    }
+
     const result = await response.json();
     console.log("Profile data:", result);
 

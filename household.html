@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haushalt hinzufügen/beitreten</title>
+    <link rel="icon" type="image/png" href="/images/Favicon.png">
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+</head>
+<body>
+    <main>
+        <h1>Haushalt anlegen</h1>
+        <p>Du hast noch keinen Haushalt. Lege jetzt einen neuen an.</p>
+
+        <form id="householdForm">
+            <label for="household_name">Haushaltsname</label>
+            <input type="text" id="household_name" name="household_name" required />
+            <button type="submit">Haushalt erstellen</button>
+        </form>
+
+        <p id="householdMessage"></p>
+    </main>
+
+<footer></footer>
+<script src="/js/auth.js"></script>
+<script src="/js/data.js"></script>
+<script src="/js/household.js"></script>
+</body>
+</html>

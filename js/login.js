@@ -16,7 +16,12 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (result.status === "success") {
       alert("Login successful!");
-      window.location.href = "index.html";
+      // If household_id is null/undefined, redirect to household setup page first
+      if (result.household_id == null) {
+        window.location.href = "household.html";
+      } else {
+        window.location.href = "index.html";
+      }
     } else {
       alert(result.message || "Login failed.");
     }

@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Check user in DB
-    $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = :email");
+    // Check user in DB (include household_id)
+    $stmt = $pdo->prepare("SELECT id, password, household_id FROM users WHERE email = :email");
     $stmt->execute([':email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -28,8 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_regenerate_id(true);
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email']   = $email;
+        // store household_id in session (may be NULL)
+        $_SESSION['household_id'] = isset($user['household_id']) ? $user['household_id'] : null;
 
-        echo json_encode(["status" => "success"]);
+        echo json_encode(["status" => "success", "household_id" => $_SESSION['household_id']]);
     } else {
         echo json_encode(["status" => "error", "message" => "Invalid credentials"]);
     }
