@@ -2,9 +2,10 @@
 Das hier ist das Betriebssystem für sortino.
 Dieses Projekt wurde im Rahmen vom Modul Interaktive Medien 4 von Tim Brönimann, Tim Eberhard, Luc Guerraz und Carlo Pierotto realisiert.
 Benutzt wird ein ESP32c6
-Der OLED Display wird SCL an pin 7 und SCA an pin 6 angeschlossen
-Die Waage wird SCK an pin 5 und DT an pin 4 angeschlossen
-Der NeoPixel Ring ist an Pin 10 angeschlossen
+Beim Starten wird zuerst die Waage kalibriert und danach wird auf Gewichtsunterschiede geachtet.
+Jeder Gewichtsunterschied wird an die API gesendet, welche den entsprechenden Spielzeugnahmen zurückgibt. Dieser wird dann angezeigt, zusammen mit der Info, ob das Spielzeug hineingelegt oder entfernt wurde.
+Falls nicht alle Spielsachen um 18:30 in der Box verräumt sind, kommt alle 5 Minuten eine Nachricht auf dem OLED und über den Lautsprecher, dass aufgeräumt werden soll.
+Wenn um 19:00 aufgeräumt wurde, kommt eine Nachricht mit Lob, wenn dann eine Nachricht der Enttäschung.
 */
 
 //Verwendete Bibliotheken
