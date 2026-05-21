@@ -3,7 +3,7 @@
 ## Inhaltsverzeichnis
 
 - [Kurzbeschreibung des Projekts](#kurzbeschreibung-des-projekts)
-- [UX & Konzeption](#ux-&-konzeption)
+- [UX & Konzeption](#ux--konzeption)
 - [Setup](#setup)
 - [Technische Details](#technische-details)
 - [Known bugs](#known-bugs)
