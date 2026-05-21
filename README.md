@@ -80,6 +80,71 @@ Im Steckplan sieht man, an welche Pins, welche Komponenten angeschlossen werden.
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
 * *ggf. **Bildmaterial***
 
+#### Kommunikationswege / API Schnittstellen
+
+##### Kisten status abfragen (`api/physical/lib/get/add.php`)
+Wird alle 3 Sekunden abgefragt, um zu wissen ob die Kiste neue Spielzeuge jetzt messen muss
+```bash
+curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/add'
+```
+```json
+{
+  "status": "success",
+  "data": {
+    "add_mode": false
+  }
+}
+```
+
+##### Spielzeug hinzufügen, gewicht erfassen (`api/physical/lib/post/add.php`)
+Wird abgefragt, um das Gewicht eines neues Spielzeug zu erfassen
+```bash
+curl -X POST 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/add' \
+  --header 'Content-Type: application/json' \
+  --data '{"weight": 140}'
+```
+```json
+{
+  "status": "success",
+  "data": {
+    "name": "Neues Spielzeug Name"
+  }
+}
+```
+
+##### Spielzeug wird in kiste gelegt/herausgenommen (`api/physical/lib/post/event.php`)
+Wird abgefragt, um eine Gewichtänderung in der Kiste zu erfassen.
+```bash
+curl -X POST 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/event' \
+  --header 'Content-Type: application/json' \
+  --data '{"weight": 87.0}'
+```
+```json
+{
+  "status": "success",
+  "data": {
+    "name": "Spielzeug Name",
+    "movement": 1
+  }
+}
+```
+
+##### Sind alle Spielzeuge in der Kiste (`api/physical/lib/get/status.php`)
+Wird abgefragt, um zu wissen ob alle Spielzeuge in der Kiste sind und zu wissen wieviele fehlen/da sind
+```bash
+curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
+```
+```json
+{
+  "status": "success",
+  "data": {
+    "all_in_box": true,
+    "in_box": 14,
+    "out_box": 0
+  }
+}
+```
+
 ## Technische Details //Luc
 
 // Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
