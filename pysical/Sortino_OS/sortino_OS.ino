@@ -23,7 +23,7 @@ Der NeoPixel Ring ist an Pin 10 angeschlossen
 const char* ssid     = "tinkergarden";
 const char* password = "strenggeheim";
 
-const String serialNumber = "ab-ab-ab";
+const String serialNumber = "xy-xy-xy";
 const String baseURL = "https://im04.tim-broenimann.ch/api/physical/";
 
 // API Endpunkte
