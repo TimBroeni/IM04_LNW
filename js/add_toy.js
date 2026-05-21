@@ -49,7 +49,7 @@ async function pollToyWeight() {
         toyMessage.textContent = "Das Spielzeug wurde nicht rechtzeitig erkannt. Du wirst weitergeleitet.";
       }
 
-      await deleteToyAndRedirect("toy.html");
+      await deleteToyAndRedirect("toys.html");
       return;
     }
 
