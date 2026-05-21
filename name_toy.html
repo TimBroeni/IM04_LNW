@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spielzeug benennen</title>
+    <link rel="icon" type="image/png" href="/images/Favicon.png">
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+</head>
+<body>
+    <main>
+        <h1>Neues Spielzeug anlegen</h1>
+        <p>Gib zuerst den Namen des Spielzeugs ein.</p>
+
+        <form id="nameToyForm">
+            <label for="toy_name">Spielzeugname</label>
+            <input type="text" id="toy_name" name="toy_name" required />
+            <button type="submit">Weiter</button>
+        </form>
+
+        <button type="button" id="skipToyButton">Spielzeug später hinzufügen</button>
+
+        <p id="toyMessage"></p>
+    </main>
+
+    <footer></footer>
+    <script src="/js/auth.js"></script>
+    <script src="/js/name_toy.js"></script>
+</body>
+</html>
