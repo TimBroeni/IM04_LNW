@@ -9,7 +9,24 @@
     <link rel="stylesheet" href="/css/desktop.css" />
   </head>
   <body>
-    <h1>Sortino Dashboard</h1>
+    <header>
+      <div class="header_logo">
+        <img src="/images/sortino_bildmarke.png" alt="SortinoLogo" />
+      </div>
+      <div class="header_text">
+        <h1>Dashboard</h1>
+        <h2>Kistenübersicht</h2>
+      </div>
+    </header>
+
+    <main>
+    <div class="dashboard_toys-outside">
+      <h2>Spielzeuge ausserhalb der Kiste</h2>
+      <div>
+        <p class="toy-out">Spielzeug</p>
+        <p class="out-since">Seit <span id="outSince"></span></p>
+      </div>
+    </div>
 
     <!-- This is where we'll dynamically show the protected content -->
     <div id="protectedContent">
@@ -21,10 +38,11 @@
     <a href="profil.html">
       <button id="editProfileBtn">Profil bearbeiten</button>
     </a>
+    </main>
     <footer>
-      <div id="footer_icons">
-        <a href="index.html">
-          <p>Dashboard</p>
+      <nav id="navigation">
+        <a href="index.html" class="active">
+          <p>Übersicht</p>
         </a>
         <a href="toy.html">
           <p>Spielzeuge</p>
@@ -32,12 +50,11 @@
         <a href="einstellungen.html">
           <p>Einstellungen</p>
         </a>
-      </div>
+      </nav>
     </footer>
     <script src="/js/auth.js"></script>
     <script src="/js/data.js"></script>
     <script src="/js/logout.js"></script>
     <script src="/js/dashboard.js"></script>
   </body>
-
 </html>
