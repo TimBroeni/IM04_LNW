@@ -42,8 +42,8 @@ $insert->execute(['timestamp' => time(), 'toy_id' => $new_toy->id, 'box_id' => $
 /**
  * turn off add mode from the box when done
  */
-$update = $pdo->prepare("UPDATE boxes SET add_mode = :add_mode WHERE id=:id");
-$update->execute(['id' => $box->id, 'add_mode' => 0]);
+$update = $pdo->prepare("UPDATE boxes SET add_mode = :add_mode WHERE household_id=:household_id");
+$update->execute(['household_id' => $box->household_id, 'add_mode' => 0]);
 
 $return_data = [
   'name' => $new_toy->name
