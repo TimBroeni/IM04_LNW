@@ -34,7 +34,7 @@ Die Kiste erkennt Spielzeuge anhand des Gewichts.
 ![User Flow + Screen Flow](readme-assets/ScreenFlow.png)
 ### Weitere Ergänzungen
 
-> WEBAPP
+> WEBAPP //Ebi
 > * *Welche Features waren angedacht?*
 > * *Welche Features wurden nicht umgesetzt? (Warum)*
 
@@ -42,12 +42,12 @@ Für die Spielzeugkiste (Microcontroller) hatten wir ein Gamification-Konzept en
 Es hätte das Kind instruiert, welches Spielzeug es als Nächstes in die Kiste legen soll. Dies haben wir nicht umgesetzt, da es den Scope gesprengt hätte.
 Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir weggelassen, da wir die Belohnungen aus der Webapp aus Zeitgründen gestrichen haben.
 
-## Setup
+## Setup //Luc ist für das Video und diesen Teil verantwortlich
 
 * **WebApp:** [https://im04.tim-broenimann.ch](https://im04.tim-broenimann.ch)  
 * **Video-Dokumentation:** [Link zum Video auf Youtube](http://link.zum.video) 
 
-### Installationsanleitung WebApp
+### Installationsanleitung WebApp //Bröner
 
 ***verständliche** Schritt-für-Schritt-Anleitung für Aussenstehende, um das Projekt zu klonen und auf einem eigenen Server zu installieren*
 
@@ -60,30 +60,40 @@ Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir
 
 ### Bauanleitung Physical Computing
 
+#### Komponenten //Carlo, Bröner (macht Webapp Teil vom Komponentenplan), Luc macht Server
+- ESP32C6
+- OLED Display
+- MP3 Player mit Lautsprecher
+- LED Ring (12 LEDs)
+- Gewichtssensor
+
+Der ESP32C6 ist das Kernstück, woran alle Physischen Komponenten verbunden werden.
+Im Steckplan sieht man, an welche Pins, welche Komponenten angeschlossen werden.
+
 * ***Was muss ich wie bauen, verbinden, installieren?***  
 * *ergänze: **Komponentenplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
-  * *die eingesetzten Komponenten*  
-  * *die verbundenen Sensoren und Aktoren*  
-  * *die Programme (mit Dateinamen)*  
-  * *die Kommunikationswege*  
+  * *die eingesetzten Komponenten*  //Carlo
+  * *die verbundenen Sensoren und Aktoren*  //Carlo
+  * *die Programme (mit Dateinamen)*  //Carlo, Luc
+  * *die Kommunikationswege*  //Luc
 * *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
 * *ggf. **Bildmaterial***
 
-## Technische Details
+## Technische Details //Luc
 
 // Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
 
 ### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\]  
 ### Datenschnittstelle
-Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und die Webapp.
+Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und der Webapp.
 
 Wenn ein Spielzeug aus der Kiste genommen wird, wird ein Eintrag in der `toy_events` Tabelle gemacht.
 
 Wenn man in der App ein neues Spielzeug erfassen will, wird in der `boxes` Tabelle der `add_mode` auf `true` gesetzt, und ein neuer Eintrag in der `toys` Tabelle erstellt, mit einem `weight` von `0`.
 Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, und wenn ja erfasst es das neue Gewicht im `toy` Eintrag von vorher.
 
-### ERM
+### ERM //Luc
 ![ERM Diagramm](readme-assets/ERM.png) 
 - **households**
   - Zentrale Tabelle für Haushalte/Familien
@@ -163,13 +173,13 @@ Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, un
     - Verknüpft Boxen mit Belohnungen und dokumentiert Punkte/Ereignisse.
 ### Authentifizierung \[*Erklärung*\]
 
-## Known bugs
+## Known bugs //Alle
 
 * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  
 * Was könnte noch verbessert werden?
 
-## Umsetzungsprozess
+## Umsetzungsprozess //Alle
 
 * **Reflexion / Erfahrung / Lernfortschritt:** *Was haben wir gelernt? Würden wir es nochmal genauso machen? Was war gut, was war schlecht?*  
 * **Herausforderungen & Lösungen:** \[*Verworfene Ansätze, Fehler, Umplanungen*\]  
