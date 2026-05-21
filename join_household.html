@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haushalt beitreten</title>
+    <link rel="icon" type="image/png" href="/images/Favicon.png">
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+</head>
+<body>
+    <main>
+        <h1>Einem Haushalt beitreten</h1>
+        <p>Gib den Haushaltscode ein, um einem bestehenden Haushalt beizutreten.</p>
+
+        <form id="joinHouseholdForm">
+            <label for="household_code">Haushaltscode</label>
+            <input type="text" id="household_code" name="household_code" maxlength="6" required />
+            <button type="submit">Haushalt beitreten</button>
+        </form>
+
+        <button type="button" onclick="window.location.href='/household.html'">Zurück</button>
+
+        <p id="householdMessage"></p>
+    </main>
+
+    <footer></footer>
+    <script src="/js/auth.js"></script>
+    <script src="/js/join_household.js"></script>
+</body>
+</html>
