@@ -28,7 +28,7 @@ createHouseholdForm.addEventListener("submit", async (event) => {
 
         if (result.status === "success") {
             householdMessage.textContent = `Haushalt erstellt. Code: ${result.code}`;
-            window.location.href = "/name_toy.html";
+            window.location.href = "/new_box.html";
             return;
         }
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sortino-Kiste hinzufügen</title>
+    <link rel="icon" type="image/png" href="/images/Favicon.png">
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+</head>
+<body>
+    <main>
+        <h1>Sortino-Kiste hinzufügen</h1>
+        <p>Suche unter deiner Sortino-Kiste die Seriennummer und vergib einen Namen für die Box.</p>
+
+        <form id="newBoxForm">
+            <label for="box_serialnumber">Seriennummer</label>
+            <input type="text" id="box_serialnumber" name="box_serialnumber" required />
+
+            <label for="box_name">Name der Kiste</label>
+            <input type="text" id="box_name" name="box_name" required />
+
+            <button type="submit">Weiter</button>
+        </form>
+
+        <p id="boxMessage"></p>
+
+    </main>
+
+    <footer></footer>
+    <script src="/js/auth.js"></script>
+    <script src="/js/new_box.js"></script>
+</body>
+</html>
