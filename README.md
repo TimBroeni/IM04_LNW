@@ -51,7 +51,7 @@ Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir
 
 ***verständliche** Schritt-für-Schritt-Anleitung für Aussenstehende, um das Projekt zu klonen und auf einem eigenen Server zu installieren*
 
-1. *Was benötige ich an Infrastruktur?*  
+1. *Was benötige ich an Infrastruktur?* 
 2. *Was muss ich auf meinem Webserver installieren?*  
 3. *Wie kann ich die Datenbank importieren?*  
 4. *Wo muss ich die DB-Credentials eintragen?*  
@@ -149,13 +149,19 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 
 // Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
 
-### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\]  
-### Datenschnittstelle
+### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\] 
+
+TB: !!!!!!!! --> Kopfbereich
+
+
+
+
+### Datenschnittstelle //Luc
 Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und der Webapp.
 
 Wenn ein Spielzeug aus der Kiste genommen wird, wird ein Eintrag in der `toy_events` Tabelle gemacht.
 
-Wenn man in der App ein neues Spielzeug erfassen will, wird in der `boxes` Tabelle der `add_mode` auf `true` gesetzt, und ein neuer Eintrag in der `toys` Tabelle erstellt, mit einem `weight` von `0`.
+Wenn man in der App ein neues Spielzeug erfassen will, wird in der `boxes` Tabelle der `add_mode` auf `true` gesetzt, und ein neuer Eintrag in der `toys` Tabelle erstellt, mit einem `weight` von `0`. Wenn 15s nichts in die Box gelegt wird, bricht die App den Vorgang ab. 
 Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, und wenn ja erfasst es das neue Gewicht im `toy` Eintrag von vorher.
 
 ### ERM //Luc
@@ -240,11 +246,18 @@ Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, un
 
 ## Known bugs //Alle
 
+
+!!!!!!!!!!!!!
+
+
+
 * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  
 * Was könnte noch verbessert werden?
 
 ## Umsetzungsprozess //Alle
+
+!!!!!!!!!!!!!!
 
 * **Reflexion / Erfahrung / Lernfortschritt:** *Was haben wir gelernt? Würden wir es nochmal genauso machen? Was war gut, was war schlecht?*  
 * **Herausforderungen & Lösungen:** \[*Verworfene Ansätze, Fehler, Umplanungen*\]  
