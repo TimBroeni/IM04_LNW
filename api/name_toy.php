@@ -31,13 +31,6 @@ if (!$user || empty($user['household_id'])) {
 }
 
 $householdId = (int) $user['household_id'];
-$boxId = (int) ($_SESSION['box_id'] ?? 0);
-
-if ($boxId <= 0) {
-    http_response_code(400);
-    echo json_encode(['status' => 'error', 'message' => 'Box missing']);
-    exit;
-}
 
 try {
     if ($action === 'create') {
@@ -67,9 +60,8 @@ try {
 
         $toyId = (int) $pdo->lastInsertId();
 
-        $stmt = $pdo->prepare('UPDATE boxes SET add_mode = 1 WHERE id = :box_id AND household_id = :household_id');
+        $stmt = $pdo->prepare('UPDATE boxes SET add_mode = 1 WHERE household_id = :household_id');
         $stmt->execute([
-            ':box_id' => $boxId,
             ':household_id' => $householdId,
         ]);
 
@@ -91,10 +83,9 @@ try {
             exit;
         }
 
-        $stmt = $pdo->prepare('SELECT t.id, t.name, t.weight, b.add_mode FROM toys t LEFT JOIN boxes b ON b.id = :box_id WHERE t.id = :toy_id AND t.household_id = :household_id AND b.household_id = :household_id LIMIT 1');
+        $stmt = $pdo->prepare('SELECT id, name, weight FROM toys WHERE id = :toy_id AND household_id = :household_id');
         $stmt->execute([
             ':toy_id' => (int) $_SESSION['toy_id'],
-            ':box_id' => $boxId,
             ':household_id' => $householdId,
         ]);
         $toy = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -124,9 +115,8 @@ try {
             ]);
         }
 
-        $stmt = $pdo->prepare('UPDATE boxes SET add_mode = 0 WHERE id = :box_id AND household_id = :household_id');
+        $stmt = $pdo->prepare('UPDATE boxes SET add_mode = 0 WHERE household_id = :household_id');
         $stmt->execute([
-            ':box_id' => $boxId,
             ':household_id' => $householdId,
         ]);
 
