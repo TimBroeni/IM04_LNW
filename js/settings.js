@@ -1,4 +1,5 @@
 let pendingMemberRemovalId = null;
+let pendingBoxRemovalId = null;
 
 async function loadHouseholdName() {
 	try {
@@ -13,6 +14,7 @@ async function loadHouseholdName() {
 
 		const result = await response.json();
 		const householdNameElement = document.getElementById("householdName");
+		const boxListElement = document.getElementById("boxList");
 		const householdMembersList = document.getElementById("householdMembersList");
 
 		if (!householdNameElement) {
@@ -20,6 +22,30 @@ async function loadHouseholdName() {
 		}
 
 		householdNameElement.textContent = result.household_name || "Dein Zuhause";
+
+		if (boxListElement) {
+			boxListElement.innerHTML = "";
+
+			(result.boxes || []).forEach((box) => {
+				const boxItem = document.createElement("li");
+				boxItem.dataset.boxId = box.id;
+
+				const boxName = document.createElement("p");
+				boxName.textContent = box.name || "Unbenannte Kiste";
+
+				const boxSerialnumber = document.createElement("p");
+				boxSerialnumber.textContent = `Seriennummer: ${box.serialnumber || "-"}`;
+
+				const removeBoxButton = document.createElement("button");
+				removeBoxButton.type = "button";
+				removeBoxButton.className = "household-remove-btn";
+				removeBoxButton.textContent = "Entfernen";
+				removeBoxButton.addEventListener("click", () => openRemoveBoxPopup(box.id));
+
+				boxItem.append(boxName, boxSerialnumber, removeBoxButton);
+				boxListElement.appendChild(boxItem);
+			});
+		}
 
 		if (!householdMembersList) {
 			return;
@@ -69,6 +95,24 @@ function closeRemoveMemberPopup() {
 	}
 }
 
+function openRemoveBoxPopup(boxId) {
+	pendingBoxRemovalId = boxId;
+
+	const overlay = document.getElementById("removeBoxOverlay");
+	if (overlay) {
+		overlay.classList.remove("hidden");
+	}
+}
+
+function closeRemoveBoxPopup() {
+	pendingBoxRemovalId = null;
+
+	const overlay = document.getElementById("removeBoxOverlay");
+	if (overlay) {
+		overlay.classList.add("hidden");
+	}
+}
+
 async function removeHouseholdMember(memberId) {
 	try {
 		const response = await fetch("/api/settings.php", {
@@ -80,6 +124,35 @@ async function removeHouseholdMember(memberId) {
 			body: JSON.stringify({
 				action: "remove_member",
 				member_id: memberId,
+			}),
+		});
+
+		if (response.status === 401) {
+			window.location.href = "/login.html";
+			return;
+		}
+
+		const result = await response.json();
+
+		if (result.status === "success") {
+			await loadHouseholdName();
+		}
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+async function removeBox(boxId) {
+	try {
+		const response = await fetch("/api/settings.php", {
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				action: "remove_box",
+				box_id: boxId,
 			}),
 		});
 
@@ -115,6 +188,25 @@ if (confirmRemoveMemberBtn) {
 const cancelRemoveMemberBtn = document.getElementById("cancelRemoveMemberBtn");
 if (cancelRemoveMemberBtn) {
 	cancelRemoveMemberBtn.addEventListener("click", closeRemoveMemberPopup);
+}
+
+const confirmRemoveBoxBtn = document.getElementById("confirmRemoveBoxBtn");
+if (confirmRemoveBoxBtn) {
+	confirmRemoveBoxBtn.addEventListener("click", async () => {
+		if (pendingBoxRemovalId == null) {
+			closeRemoveBoxPopup();
+			return;
+		}
+
+		const boxId = pendingBoxRemovalId;
+		closeRemoveBoxPopup();
+		await removeBox(boxId);
+	});
+}
+
+const cancelRemoveBoxBtn = document.getElementById("cancelRemoveBoxBtn");
+if (cancelRemoveBoxBtn) {
+	cancelRemoveBoxBtn.addEventListener("click", closeRemoveBoxPopup);
 }
 
 loadHouseholdName();

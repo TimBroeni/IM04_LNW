@@ -62,9 +62,53 @@ if ($action === 'remove_member') {
 	exit;
 }
 
+if ($action === 'remove_box') {
+	$boxId = (int) ($input['box_id'] ?? 0);
+
+	if ($boxId <= 0) {
+		http_response_code(400);
+		echo json_encode(['status' => 'error', 'message' => 'box_id is required']);
+		exit;
+	}
+
+	$boxStmt = $pdo->prepare(
+		'SELECT id FROM boxes
+		 WHERE id = :box_id
+		 AND household_id = (SELECT household_id FROM users WHERE id = :user_id LIMIT 1)'
+	);
+	$boxStmt->execute([
+		':box_id' => $boxId,
+		':user_id' => $userId,
+	]);
+
+	if (!$boxStmt->fetch(PDO::FETCH_ASSOC)) {
+		http_response_code(404);
+		echo json_encode(['status' => 'error', 'message' => 'Box not found']);
+		exit;
+	}
+
+	$deleteStmt = $pdo->prepare('UPDATE boxes SET household_id = NULL WHERE id = :box_id');
+	$deleteStmt->execute([':box_id' => $boxId]);
+
+	echo json_encode(['status' => 'success']);
+	exit;
+}
+
 $householdMembers = [];
+$householdBoxes = [];
 
 if ($row && !empty($row['household_name'])) {
+	$boxesStmt = $pdo->prepare(
+		'SELECT id, name, serialnumber
+		 FROM boxes
+		 WHERE household_id = (
+		 	SELECT household_id FROM users WHERE id = :user_id LIMIT 1
+		 )
+		 ORDER BY name ASC, id ASC'
+	);
+	$boxesStmt->execute([':user_id' => $userId]);
+	$householdBoxes = $boxesStmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+
 	$membersStmt = $pdo->prepare(
 		'SELECT id, firstname, lastname, email
 		 FROM users
@@ -81,6 +125,7 @@ if (!$row || empty($row['household_name'])) {
 	echo json_encode([
 		'status' => 'success',
 		'household_name' => null,
+		'boxes' => [],
 		'household_members' => [],
 	]);
 	exit;
@@ -89,5 +134,6 @@ if (!$row || empty($row['household_name'])) {
 echo json_encode([
 	'status' => 'success',
 	'household_name' => $row['household_name'],
+	'boxes' => $householdBoxes,
 	'household_members' => $householdMembers,
 ]);

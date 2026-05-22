@@ -22,39 +22,47 @@
     <main>
 
 <!-- PROFIL BEARBEITEN -->
-    <h2>Profil bearbeiten</h2>
-    <a href="profil.html">
-        <button id="editProfileBtn">Profil bearbeiten</button>
-    </a>
+        <h2>Profil bearbeiten</h2>
+        <a href="profil.html">
+            <button id="editProfileBtn">Profil bearbeiten</button>
+        </a>
 
 <!-- KISTENÜBERSICHT -->
-    <h2>Kistenübersicht</h2>
-    <a href="new.box.html">
-        <button id="newBoxBtn">Neue Kiste</button>
-    </a>
-    <ul id="boxList" class="box-list">
-        <!-- Kisten werden hier dynamisch hinzugefügt -->
-    </ul>
+        <h2>Kistenübersicht</h2>
+        <a href="new_box.html">
+            <button id="newBoxBtn">Neue Kiste</button>
+        </a>
+        <ul id="boxList" class="box-list">
+            <!-- Kisten werden hier dynamisch hinzugefügt -->
+        </ul>
     
 <!-- HAUSHALTSMITGLIEDER -->
-    <h2 id="householdName">Dein Zuhause</h2>
-    <ul id="householdMembersList" class="household-members-list">
-        <!-- Mitglieder werden hier dynamisch hinzugefügt -->
-    </ul>
+        <h2 id="householdName">Dein Zuhause</h2>
+        <ul id="householdMembersList" class="household-members-list">
+            <!-- Mitglieder werden hier dynamisch hinzugefügt -->
+        </ul>
 
 <!-- LOGOUT BUTTON -->
-    <br>
-    <button id="logoutBtn">Logout</button>
-
-
+        <br>
+        <button id="logoutBtn">Abmelden</button>
     </main>
-
+<!-- POPUPS -->
         <div id="removeMemberOverlay" class="popup-overlay hidden">
             <div class="popup" role="dialog" aria-modal="true" aria-labelledby="removeMemberTitle">
-                <p id="removeMemberTitle">Möchtest du diesen User wirklich aus dem Haushalt entfernen?</p>
+                <p id="removeMemberTitle">Möchtest du diesen Haushaltsmember wirklich aus dem Haushalt entfernen?</p>
                 <div class="popup-actions">
-                    <button id="confirmRemoveMemberBtn" class="popup-btn-neutral" type="button">Fortfahren</button>
                     <button id="cancelRemoveMemberBtn" class="popup-btn-danger" type="button">Abbrechen</button>
+                    <button id="confirmRemoveMemberBtn" class="popup-btn-neutral" type="button">Fortfahren</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="removeBoxOverlay" class="popup-overlay hidden">
+            <div class="popup" role="dialog" aria-modal="true" aria-labelledby="removeBoxTitle">
+                <p id="removeBoxTitle">Möchtest du diese Kiste wirklich aus dem Haushalt entfernen?</p>
+                <div class="popup-actions">
+                    <button id="cancelRemoveBoxBtn" class="popup-btn-danger" type="button">Abbrechen</button>
+                    <button id="confirmRemoveBoxBtn" class="popup-btn-neutral" type="button">Fortfahren</button>
                 </div>
             </div>
         </div>

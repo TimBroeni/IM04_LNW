@@ -1,3 +1,5 @@
+let pendingToyDeleteId = null;
+
 async function loadToyTotal() {
   try {
     const response = await fetch("/api/toy.php", {
@@ -58,7 +60,7 @@ async function loadToyTotal() {
         deleteIcon.alt = "Löschen";
 
         deleteButton.appendChild(deleteIcon);
-        deleteButton.addEventListener("click", () => deleteToy(toy.id));
+        deleteButton.addEventListener("click", () => openDeleteToyPopup(toy.id));
 
         const updateButton = document.createElement("button");
         updateButton.type = "button";
@@ -82,6 +84,24 @@ async function loadToyTotal() {
     }
   } catch (error) {
     console.error(error);
+  }
+}
+
+function openDeleteToyPopup(toyId) {
+  pendingToyDeleteId = toyId;
+
+  const overlay = document.getElementById("deleteToyOverlay");
+  if (overlay) {
+    overlay.classList.remove("hidden");
+  }
+}
+
+function closeDeleteToyPopup() {
+  pendingToyDeleteId = null;
+
+  const overlay = document.getElementById("deleteToyOverlay");
+  if (overlay) {
+    overlay.classList.add("hidden");
   }
 }
 
@@ -134,6 +154,25 @@ function formatElapsedTime(timestamp) {
 
   const elapsedDays = Math.round(elapsedHours / 24);
   return `seit ${elapsedDays}d`;
+}
+
+const confirmDeleteToyBtn = document.getElementById("confirmDeleteToyBtn");
+if (confirmDeleteToyBtn) {
+  confirmDeleteToyBtn.addEventListener("click", async () => {
+    if (pendingToyDeleteId == null) {
+      closeDeleteToyPopup();
+      return;
+    }
+
+    const toyId = pendingToyDeleteId;
+    closeDeleteToyPopup();
+    await deleteToy(toyId);
+  });
+}
+
+const cancelDeleteToyBtn = document.getElementById("cancelDeleteToyBtn");
+if (cancelDeleteToyBtn) {
+  cancelDeleteToyBtn.addEventListener("click", closeDeleteToyPopup);
 }
 
 loadToyTotal();
