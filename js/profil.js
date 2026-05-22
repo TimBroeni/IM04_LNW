@@ -1,5 +1,17 @@
 // profil.js
 
+function showSuccessPopup() {
+  const overlay = document.getElementById("successOverlay");
+  const button = document.getElementById("popupContinueBtn");
+
+  overlay.classList.remove("hidden");
+  button.focus();
+}
+
+document.getElementById("popupContinueBtn").addEventListener("click", () => {
+  window.location.href = "settings.html";
+});
+
 window.addEventListener("load", async function () {
   const user = await userData();
   if (!user) {
@@ -39,7 +51,7 @@ document.getElementById("profilForm").addEventListener("submit", async (e) => {
         document.getElementById("lastname").value = updatedUser.lastname || "";
       }
       document.getElementById("password").value = "";
-      alert("Profile updated successfully!");
+      showSuccessPopup();
     } else {
       alert(result.message || "Profile update failed.");
     }

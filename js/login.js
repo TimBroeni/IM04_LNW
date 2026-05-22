@@ -1,4 +1,16 @@
 // login.js
+function showLoginErrorPopup() {
+  const overlay = document.getElementById("loginErrorOverlay");
+  const button = document.getElementById("loginErrorBtn");
+
+  overlay.classList.remove("hidden");
+  button.focus();
+}
+
+document.getElementById("loginErrorBtn").addEventListener("click", () => {
+  document.getElementById("loginErrorOverlay").classList.add("hidden");
+});
+
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -22,10 +34,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         window.location.href = "index.html";
       }
     } else {
-      alert(result.message || "Login failed.");
+      showLoginErrorPopup();
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("Something went wrong!");
+    showLoginErrorPopup();
   }
 });
