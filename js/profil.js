@@ -7,6 +7,7 @@ window.addEventListener("load", async function () {
     return;
   }
 
+  document.querySelector("#email").value = user.email || "";
   document.querySelector("#firstname").value = user.firstname || "";
   document.querySelector("#lastname").value = user.lastname || "";
 })
@@ -14,8 +15,10 @@ window.addEventListener("load", async function () {
 document.getElementById("profilForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const email = document.getElementById("email").value.trim();
   const firstname = document.getElementById("firstname").value.trim();
   const lastname = document.getElementById("lastname").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   try {
     const response = await fetch("/api/profilUpdate.php", {
@@ -23,7 +26,7 @@ document.getElementById("profilForm").addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ firstname, lastname }),
+      body: JSON.stringify({ email, firstname, lastname, password }),
     });
     const result = await response.json();
     console.log("Update response:", result);
@@ -31,9 +34,11 @@ document.getElementById("profilForm").addEventListener("submit", async (e) => {
     if (result.status === "success") {
       const updatedUser = await userData();
       if (updatedUser) {
+        document.getElementById("email").value = updatedUser.email || "";
         document.getElementById("firstname").value = updatedUser.firstname || "";
         document.getElementById("lastname").value = updatedUser.lastname || "";
       }
+      document.getElementById("password").value = "";
       alert("Profile updated successfully!");
     } else {
       alert(result.message || "Profile update failed.");

@@ -15,7 +15,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (result.status === "success") {
-      alert("Login successful!");
       // If household_id is null/undefined, redirect to household setup page first
       if (result.household_id == null) {
         window.location.href = "household.html";
