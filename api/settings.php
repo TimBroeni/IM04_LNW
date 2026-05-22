@@ -11,6 +11,14 @@ if (!isset($_SESSION['user_id'])) {
 require_once '../system/config.php';
 
 $userId = (int) $_SESSION['user_id'];
+$rawInput = file_get_contents('php://input');
+$input = json_decode($rawInput, true);
+
+if (!is_array($input)) {
+	$input = $_POST;
+}
+
+$action = trim($input['action'] ?? '');
 
 $stmt = $pdo->prepare(
 	'SELECT h.name AS household_name
@@ -22,11 +30,43 @@ $stmt = $pdo->prepare(
 $stmt->execute([':user_id' => $userId]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if ($action === 'remove_member') {
+	$memberId = (int) ($input['member_id'] ?? 0);
+
+	if ($memberId <= 0) {
+		http_response_code(400);
+		echo json_encode(['status' => 'error', 'message' => 'member_id is required']);
+		exit;
+	}
+
+	$memberStmt = $pdo->prepare(
+		'SELECT id FROM users
+		 WHERE id = :member_id
+		 AND household_id = (SELECT household_id FROM users WHERE id = :user_id LIMIT 1)'
+	);
+	$memberStmt->execute([
+		':member_id' => $memberId,
+		':user_id' => $userId,
+	]);
+
+	if (!$memberStmt->fetch(PDO::FETCH_ASSOC)) {
+		http_response_code(404);
+		echo json_encode(['status' => 'error', 'message' => 'Member not found']);
+		exit;
+	}
+
+	$deleteStmt = $pdo->prepare('UPDATE users SET household_id = NULL WHERE id = :member_id');
+	$deleteStmt->execute([':member_id' => $memberId]);
+
+	echo json_encode(['status' => 'success']);
+	exit;
+}
+
 $householdMembers = [];
 
 if ($row && !empty($row['household_name'])) {
 	$membersStmt = $pdo->prepare(
-		'SELECT firstname, lastname, email
+		'SELECT id, firstname, lastname, email
 		 FROM users
 		 WHERE household_id = (
 		 	SELECT household_id FROM users WHERE id = :user_id LIMIT 1

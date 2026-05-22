@@ -109,6 +109,25 @@ button.header_action-btn {
     cursor: pointer;
 }
 
+  .popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .popup button.popup-btn-neutral {
+    background: #e2e8f0;
+    color: #0f172a;
+    box-shadow: none;
+  }
+
+  .popup button.popup-btn-danger {
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 12px 24px rgba(220, 38, 38, 0.24);
+  }
+
 .hidden {
     display: none;
 }

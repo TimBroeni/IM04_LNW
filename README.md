@@ -246,6 +246,7 @@ Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, un
 
 ## Known bugs //Alle
 
+--> Wenn User sich selber aus DB löscht, ist er immernoch in dem Haushalt und wird nicht ausgeloggt
 
 !!!!!!!!!!!!!
 
