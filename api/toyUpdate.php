@@ -18,6 +18,7 @@ if (!is_array($input)) {
 }
 
 $toyId = (int) ($input['toy_id'] ?? 0);
+$action = trim($input['action'] ?? 'delete');
 
 if ($toyId <= 0) {
     http_response_code(400);
@@ -38,6 +39,38 @@ if (!$user || empty($user['household_id'])) {
 $householdId = (int) $user['household_id'];
 
 try {
+    if ($action === 'update_name') {
+        $toyName = trim($input['name'] ?? '');
+
+        if ($toyName === '') {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'name is required']);
+            exit;
+        }
+
+        $stmt = $pdo->prepare('SELECT id FROM toys WHERE id = :toy_id AND household_id = :household_id');
+        $stmt->execute([
+            ':toy_id' => $toyId,
+            ':household_id' => $householdId,
+        ]);
+
+        if (!$stmt->fetch(PDO::FETCH_ASSOC)) {
+            http_response_code(404);
+            echo json_encode(['status' => 'error', 'message' => 'Toy not found']);
+            exit;
+        }
+
+        $stmt = $pdo->prepare('UPDATE toys SET name = :name WHERE id = :toy_id AND household_id = :household_id');
+        $stmt->execute([
+            ':name' => $toyName,
+            ':toy_id' => $toyId,
+            ':household_id' => $householdId,
+        ]);
+
+        echo json_encode(['status' => 'success']);
+        exit;
+    }
+
     $stmt = $pdo->prepare('SELECT id FROM toys WHERE id = :toy_id AND household_id = :household_id');
     $stmt->execute([
         ':toy_id' => $toyId,

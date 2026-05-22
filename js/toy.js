@@ -1,4 +1,5 @@
 let pendingToyDeleteId = null;
+let pendingToyUpdateId = null;
 
 async function loadToyTotal() {
   try {
@@ -72,6 +73,7 @@ async function loadToyTotal() {
         updateIcon.alt = "Bearbeiten";
 
         updateButton.appendChild(updateIcon);
+        updateButton.addEventListener("click", () => openUpdateToyPopup(toy.id, toy.name));
 
 
         const status = document.createElement("p");
@@ -105,6 +107,34 @@ function closeDeleteToyPopup() {
   }
 }
 
+function openUpdateToyPopup(toyId, toyName) {
+  pendingToyUpdateId = toyId;
+
+  const overlay = document.getElementById("updateToyOverlay");
+  const input = document.getElementById("updateToyNameInput");
+
+  if (input) {
+    input.value = toyName || "";
+  }
+
+  if (overlay) {
+    overlay.classList.remove("hidden");
+  }
+
+  if (input) {
+    input.focus();
+  }
+}
+
+function closeUpdateToyPopup() {
+  pendingToyUpdateId = null;
+
+  const overlay = document.getElementById("updateToyOverlay");
+  if (overlay) {
+    overlay.classList.add("hidden");
+  }
+}
+
 async function deleteToy(toyId) {
   try {
     const response = await fetch("/api/toyUpdate.php", {
@@ -114,6 +144,36 @@ async function deleteToy(toyId) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ toy_id: toyId }),
+    });
+
+    if (response.status === 401) {
+      window.location.href = "/login.html";
+      return;
+    }
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      await loadToyTotal();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function updateToyName(toyId, toyName) {
+  try {
+    const response = await fetch("/api/toyUpdate.php", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "update_name",
+        toy_id: toyId,
+        name: toyName,
+      }),
     });
 
     if (response.status === 401) {
@@ -173,6 +233,27 @@ if (confirmDeleteToyBtn) {
 const cancelDeleteToyBtn = document.getElementById("cancelDeleteToyBtn");
 if (cancelDeleteToyBtn) {
   cancelDeleteToyBtn.addEventListener("click", closeDeleteToyPopup);
+}
+
+const confirmUpdateToyBtn = document.getElementById("confirmUpdateToyBtn");
+if (confirmUpdateToyBtn) {
+  confirmUpdateToyBtn.addEventListener("click", async () => {
+    const input = document.getElementById("updateToyNameInput");
+    const toyName = input ? input.value.trim() : "";
+
+    if (pendingToyUpdateId == null || toyName === "") {
+      return;
+    }
+
+    const toyId = pendingToyUpdateId;
+    closeUpdateToyPopup();
+    await updateToyName(toyId, toyName);
+  });
+}
+
+const cancelUpdateToyBtn = document.getElementById("cancelUpdateToyBtn");
+if (cancelUpdateToyBtn) {
+  cancelUpdateToyBtn.addEventListener("click", closeUpdateToyPopup);
 }
 
 loadToyTotal();

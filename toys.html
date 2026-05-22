@@ -56,10 +56,24 @@
                  <!-- POPUP: Spielzeug löschen -->
                 <div id="deleteToyOverlay" class="popup-overlay hidden">
                     <div class="popup" role="dialog" aria-modal="true" aria-labelledby="deleteToyTitle">
-                        <p id="deleteToyTitle">Möchtest du dieses Spielzeug wirklich löschen?</p>
+                        <h3 id="deleteToyTitle">Spielzeug löschen</h3>
+                        <p>Möchtest du dieses Spielzeug wirklich löschen?</p>
                         <div class="popup-actions">
                             <button id="cancelDeleteToyBtn" class="popup-btn-danger" type="button">Abbrechen</button>
                             <button id="confirmDeleteToyBtn" class="popup-btn-neutral" type="button">Fortfahren</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POPUP: Spielzeug umbenennen -->
+                <div id="updateToyOverlay" class="popup-overlay hidden">
+                    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="updateToyTitle">
+                        <h3 id="updateToyTitle">Spielzeug umbenennen</h3>
+                        <p>Gib dem Spielzeug einen neuen Namen.</p>
+                        <input id="updateToyNameInput" class="popup-input" type="text" />
+                        <div class="popup-actions">
+                            <button id="cancelUpdateToyBtn" class="popup-btn-neutral" type="button">Abbrechen</button>
+                            <button id="confirmUpdateToyBtn" type="button">Weiter</button>
                         </div>
                     </div>
                 </div>
