@@ -20,11 +20,30 @@
         </div>
     </header>
     <main>
-        <button id="logoutBtn">Logout</button>
-        <a href="profil.html">
+
+<!-- PROFIL BEARBEITEN -->
+    <h2>Profil bearbeiten</h2>
+    <a href="profil.html">
         <button id="editProfileBtn">Profil bearbeiten</button>
-        </a>
+    </a>
+
+<!-- KISTENÜBERSICHT -->
+    <h2>Kistenübersicht</h2>
+    <a href="new.box.html">
+        <button id="newBoxBtn">Neue Kiste</button>
+    </a>
+    <ul id="boxList" class="box-list">
+        <!-- Kisten werden hier dynamisch hinzugefügt -->
+    </ul>
     
+<!-- HAUSHALTSMITGLIEDER -->
+    <h2 id="householdName">Dein Zuhause</h2>
+    <ul id="householdMembersList" class="household-members-list">
+        <!-- Mitglieder werden hier dynamisch hinzugefügt -->
+
+<!-- LOGOUT BUTTON -->
+    <button id="logoutBtn">Logout</button>
+
 
     </main>
     <footer>
@@ -41,6 +60,7 @@
       </nav>
     </footer>
     <script src="/js/auth.js"></script>
+    <script src="/js/settings.js"></script>
     <script src="/js/logout.js"></script>
     </body>
 </html>
