@@ -1,6 +1,24 @@
 const backToNameButton = document.getElementById("backToNameButton");
 const skipToDashboardButton = document.getElementById("skipToDashboardButton");
 const toyMessage = document.getElementById("toyMessage");
+const toyAddedOverlay = document.getElementById("toyAddedOverlay");
+const continueToyAddedBtn = document.getElementById("continueToyAddedBtn");
+
+function openToyAddedPopup() {
+  if (toyAddedOverlay) {
+    toyAddedOverlay.classList.remove("hidden");
+  }
+
+  if (continueToyAddedBtn) {
+    continueToyAddedBtn.focus();
+  }
+}
+
+function closeToyAddedPopup() {
+  if (toyAddedOverlay) {
+    toyAddedOverlay.classList.add("hidden");
+  }
+}
 
 async function deleteToyAndRedirect(targetUrl) {
   try {
@@ -87,7 +105,7 @@ async function pollToyWeight() {
         Number(result.weight) > 0
       ) {
         pollingActive = false;
-        window.location.href = "/index.html";
+        openToyAddedPopup();
         return;
       }
     } catch (error) {
@@ -96,6 +114,13 @@ async function pollToyWeight() {
 
     await new Promise((resolve) => window.setTimeout(resolve, pollIntervalMs));
   }
+}
+
+if (continueToyAddedBtn) {
+  continueToyAddedBtn.addEventListener("click", () => {
+    closeToyAddedPopup();
+    window.location.href = "/index.html";
+  });
 }
 
 if (backToNameButton) {
