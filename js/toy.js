@@ -17,35 +17,94 @@ async function loadToyTotal() {
     }
 
     const toyListElement = document.getElementById("toyList");
+    const toyEmptyStateElement = document.getElementById("toyEmptyState");
     if (toyListElement) {
       toyListElement.innerHTML = "";
 
+      if ((result.toys || []).length === 0) {
+        if (toyEmptyStateElement) {
+          toyEmptyStateElement.classList.remove("hidden");
+        }
+        return;
+      }
+
+      if (toyEmptyStateElement) {
+        toyEmptyStateElement.classList.add("hidden");
+      }
+
       (result.toys || []).forEach((toy) => {
         const listItem = document.createElement("li");
+        listItem.dataset.toyId = toy.id;
 
         const name = document.createElement("p");
         name.className = "toy_name";
         name.textContent = toy.name;
 
-        const usage = document.createElement("p");
-        usage.className = "toy_usage";
+        const toy_usage_count = document.createElement("p");
+        toy_usage_count.className = "toy_usage_count";
+        toy_usage_count.textContent = `${toy.weekly_removals ?? 0} Nutzungen diese Woche`;
 
-        const usageCount = document.createElement("span");
-        usageCount.className = "toy_usage_count";
-        usageCount.textContent = formatElapsedTime(toy.timestamp);
+        const lastUsed = document.createElement("p");
+        lastUsed.className = "toy_lastUsed";
+        lastUsed.textContent = `Zuletzt verwendet ${formatElapsedTime(toy.timestamp)}`;
 
-        const usageTail = document.createElement("span");
-        usageTail.textContent = ` ${toy.status === "In Kiste" ? "In Kiste" : "Draussen"}`;
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "toy_delete-btn";
+        deleteButton.setAttribute("aria-label", `${toy.name} löschen`);
 
-        usage.append(usageCount, usageTail);
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "/images/DEMO_toy_loeschen.png";
+        deleteIcon.alt = "Löschen";
+
+        deleteButton.appendChild(deleteIcon);
+        deleteButton.addEventListener("click", () => deleteToy(toy.id));
+
+        const updateButton = document.createElement("button");
+        updateButton.type = "button";
+        updateButton.className = "toy_update-btn";
+        updateButton.setAttribute("aria-label", `${toy.name} bearbeiten`);
+
+        const updateIcon = document.createElement("img");
+        updateIcon.src = "/images/DEMO_toy_update.png";
+        updateIcon.alt = "Bearbeiten";
+
+        updateButton.appendChild(updateIcon);
+
 
         const status = document.createElement("p");
         status.className = "toy_status";
         status.textContent = toy.status || "Draussen";
 
-        listItem.append(name, usage, status);
+        listItem.append(name, toy_usage_count, deleteButton, updateButton, status, lastUsed);
         toyListElement.appendChild(listItem);
       });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function deleteToy(toyId) {
+  try {
+    const response = await fetch("/api/toyUpdate.php", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ toy_id: toyId }),
+    });
+
+    if (response.status === 401) {
+      window.location.href = "/login.html";
+      return;
+    }
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      await loadToyTotal();
     }
   } catch (error) {
     console.error(error);

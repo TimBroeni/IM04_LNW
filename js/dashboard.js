@@ -163,7 +163,7 @@ async function loadOutsideToys() {
 
       const subtitle = document.createElement("p");
       subtitle.className = "out-since";
-      subtitle.textContent = `Fehlt seit ${formatMissingTime(toy.timestamp)}`;
+      subtitle.textContent = `Seit ${formatMissingTime(toy.timestamp)}`;
 
       toyCard.append(title, subtitle);
       outsideToysContainer.appendChild(toyCard);
