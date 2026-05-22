@@ -12,6 +12,16 @@ async function loadProfile() {
   }
 }
 
+function updateDashboardClear(allToysSorted) {
+  const dashboardClear = document.querySelector("#dashboardClear");
+
+  if (!dashboardClear) {
+    return;
+  }
+
+  dashboardClear.classList.toggle("hidden", !allToysSorted);
+}
+
 async function loadToyCount() {
   try {
     const response = await fetch("/api/toy.php", {
@@ -73,6 +83,8 @@ async function loadToySortedCount() {
     if (toySortedElement) {
       toySortedElement.textContent = result.toys_sorted ?? 0;
     }
+
+    updateDashboardClear(Boolean(result.all_toys_sorted));
   } catch (error) {
     console.error(error);
   }
@@ -114,6 +126,7 @@ async function loadOutsideToys() {
     const result = await response.json();
     const outsideToysContainer = document.querySelector("#toy_out");
     const allClearElement = document.querySelector("#allClear");
+    const outsideToysHeading = document.querySelector("#outsideToysHeading");
 
     if (!outsideToysContainer) {
       return;
@@ -121,10 +134,17 @@ async function loadOutsideToys() {
 
     if (!result.outside_toys || result.outside_toys.length === 0) {
       outsideToysContainer.innerHTML = "";
+      if (outsideToysHeading) {
+        outsideToysHeading.classList.add("hidden");
+      }
       if (allClearElement) {
         allClearElement.style.display = "block";
       }
       return;
+    }
+
+    if (outsideToysHeading) {
+      outsideToysHeading.classList.remove("hidden");
     }
 
     if (allClearElement) {

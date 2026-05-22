@@ -24,10 +24,15 @@ if (!$user) {
 }
 
 $boxesTotal = 0;
+$toysTotal = 0;
 $toysSorted = 0;
 $outsideToys = [];
 
 if (!empty($user['household_id'])) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS toys_total FROM toys WHERE household_id = :household_id");
+    $stmt->execute([':household_id' => (int) $user['household_id']]);
+    $toysTotal = (int) ($stmt->fetch(PDO::FETCH_ASSOC)['toys_total'] ?? 0);
+
     $stmt = $pdo->prepare("SELECT COUNT(*) AS boxes_total FROM boxes WHERE household_id = :household_id");
     $stmt->execute([':household_id' => (int) $user['household_id']]);
     $boxesTotal = (int) ($stmt->fetch(PDO::FETCH_ASSOC)['boxes_total'] ?? 0);
@@ -54,7 +59,9 @@ echo json_encode([
     "email" => $user['email'],
     "firstname" => $user['firstname'],
     "lastname" => $user['lastname'],
+    "toys_total" => $toysTotal,
     "boxes_total" => $boxesTotal,
     "toys_sorted" => $toysSorted,
+    "all_toys_sorted" => $toysTotal > 0 && $toysSorted >= $toysTotal,
     "outside_toys" => $outsideToys,
 ]);
