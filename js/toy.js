@@ -49,7 +49,7 @@ async function loadToyTotal() {
 
         const lastUsed = document.createElement("p");
         lastUsed.className = "toy_lastUsed";
-        lastUsed.textContent = `Zuletzt verwendet ${formatElapsedTime(toy.timestamp)}`;
+        lastUsed.textContent = `seit ${formatElapsedTime(toy.timestamp)}`;
 
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
@@ -193,27 +193,27 @@ async function updateToyName(toyId, toyName) {
 
 function formatElapsedTime(timestamp) {
   if (!timestamp || Number(timestamp) <= 0) {
-    return "seit >1min";
+    return ">1min";
   }
 
   const elapsedMinutes = Math.floor((Date.now() / 1000 - Number(timestamp)) / 60);
 
   if (elapsedMinutes < 1) {
-    return "seit >1min";
+    return ">1min";
   }
 
   if (elapsedMinutes < 60) {
-    return `seit ${elapsedMinutes}min`;
+    return `${elapsedMinutes}min`;
   }
 
   const elapsedHours = Math.round(elapsedMinutes / 60);
 
   if (elapsedHours < 24) {
-    return `seit ${elapsedHours}h`;
+    return `${elapsedHours}h`;
   }
 
   const elapsedDays = Math.round(elapsedHours / 24);
-  return `seit ${elapsedDays}d`;
+  return `${elapsedDays}d`;
 }
 
 const confirmDeleteToyBtn = document.getElementById("confirmDeleteToyBtn");
