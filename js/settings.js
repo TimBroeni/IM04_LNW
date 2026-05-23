@@ -15,6 +15,7 @@ async function loadHouseholdName() {
 
 		const result = await response.json();
 		const householdNameElement = document.getElementById("householdName");
+		const householdCodeElement = document.getElementById("householdCode");
 		const boxListElement = document.getElementById("boxList");
 		const householdMembersList = document.getElementById("householdMembersList");
 
@@ -23,6 +24,9 @@ async function loadHouseholdName() {
 		}
 
 		householdNameElement.textContent = result.household_name || "Dein Zuhause";
+		if (householdCodeElement) {
+			householdCodeElement.textContent = result.household_code || "-";
+		}
 
 		if (boxListElement) {
 			boxListElement.innerHTML = "";

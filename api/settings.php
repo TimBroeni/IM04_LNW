@@ -21,7 +21,7 @@ if (!is_array($input)) {
 $action = trim($input['action'] ?? '');
 
 $stmt = $pdo->prepare(
-	'SELECT h.name AS household_name
+	'SELECT h.name AS household_name, h.code AS household_code
 	 FROM users u
 	 LEFT JOIN households h ON h.id = u.household_id
 	 WHERE u.id = :user_id
@@ -125,6 +125,7 @@ if (!$row || empty($row['household_name'])) {
 	echo json_encode([
 		'status' => 'success',
 		'household_name' => null,
+		'household_code' => null,
 		'boxes' => [],
 		'household_members' => [],
 	]);
@@ -134,6 +135,7 @@ if (!$row || empty($row['household_name'])) {
 echo json_encode([
 	'status' => 'success',
 	'household_name' => $row['household_name'],
+	'household_code' => $row['household_code'] ?? null,
 	'boxes' => $householdBoxes,
 	'household_members' => $householdMembers,
 ]);
