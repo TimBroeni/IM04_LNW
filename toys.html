@@ -28,14 +28,8 @@
             <div class="toy_usage-chart">
                 <h3>Nutzungshäufigkeit</h3>
                 <p class="chart_header">In den letzten 7 Tagen</p>
-                <li>
-                    <p>
-                        <span id="chart_toyName">Spielzeug</span>
-                        <span id="chart_usage"> ×</span>
-                        <div class="chart_bar">
-                            <div id="chart_bar_fill"></div>
-                    </p>
-                </li>
+                <p id="toyUsageEmptyState" class="toy_emptyState hidden">Keine Nutzungsdaten vorhanden</p>
+                <div id="toyUsageChartList" class="chart_list" aria-live="polite"></div>
             </div>
 
             <div class="toy_list">

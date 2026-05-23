@@ -152,7 +152,79 @@ button.header_action-btn {
     box-shadow: 0 12px 24px rgba(220, 38, 38, 0.24);
   }
 
-.hidden {
+  .toy_usage-chart {
+    margin: 24px 0 20px;
+    padding: 20px;
+    border-radius: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow);
+  }
+
+  .toy_usage-chart h3 {
+    margin: 0;
+  }
+
+  .chart_header {
+    margin: 6px 0 18px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .chart_list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .chart_entry {
+    display: grid;
+    gap: 8px;
+  }
+
+  .chart_entry-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 0.98rem;
+  }
+
+  .chart_toyName {
+    font-weight: 600;
+    color: var(--text-main);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .chart_usage {
+    flex: 0 0 auto;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+
+  .chart_bar {
+    width: 100%;
+    height: 15px;
+    border-radius: 999px;
+    background: var(--surface-strong);
+    overflow: hidden;
+  }
+
+  .chart_bar_fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #34d399 0%, var(--accent) 100%);
+    transition: width 220ms ease;
+  }
+
+  .toy_usage-chart .toy_emptyState {
+    margin: 0 0 12px;
+  }
+
+
+
+  .hidden {
     display: none;
 }
 

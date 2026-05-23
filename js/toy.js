@@ -19,6 +19,8 @@ async function loadToyTotal() {
       toysTotalElement.textContent = result.toys_total ?? 0;
     }
 
+    renderUsageChart(result.toys || []);
+
     const toyListElement = document.getElementById("toyList");
     const toyEmptyStateElement = document.getElementById("toyEmptyState");
     if (toyListElement) {
@@ -87,6 +89,65 @@ async function loadToyTotal() {
   } catch (error) {
     console.error(error);
   }
+}
+
+function renderUsageChart(toys) {
+  const chartList = document.getElementById("toyUsageChartList");
+  const emptyState = document.getElementById("toyUsageEmptyState");
+
+  if (!chartList) {
+    return;
+  }
+
+  chartList.innerHTML = "";
+
+  if (!Array.isArray(toys) || toys.length === 0) {
+    if (emptyState) {
+      emptyState.classList.remove("hidden");
+    }
+    return;
+  }
+
+  if (emptyState) {
+    emptyState.classList.add("hidden");
+  }
+
+  const highestUsageCount = Math.max(...toys.map((toy) => Number(toy.usage_count) || 0), 0);
+
+  toys.forEach((toy, index) => {
+    const usageCount = Number(toy.usage_count) || 0;
+    const percentage = highestUsageCount > 0
+      ? (usageCount / highestUsageCount) * 100
+      : index === 0
+        ? 100
+        : 0;
+
+    const entry = document.createElement("div");
+    entry.className = "chart_entry";
+
+    const header = document.createElement("div");
+    header.className = "chart_entry-header";
+
+    const name = document.createElement("span");
+    name.className = "chart_toyName";
+    name.textContent = toy.name;
+
+    const usage = document.createElement("span");
+    usage.className = "chart_usage";
+    usage.textContent = `${usageCount}x`;
+
+    const bar = document.createElement("div");
+    bar.className = "chart_bar";
+
+    const fill = document.createElement("div");
+    fill.className = "chart_bar_fill";
+    fill.style.width = `${Math.max(0, Math.min(100, percentage)).toFixed(1)}%`;
+
+    bar.appendChild(fill);
+    header.append(name, usage);
+    entry.append(header, bar);
+    chartList.appendChild(entry);
+  });
 }
 
 function openDeleteToyPopup(toyId) {
