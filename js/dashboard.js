@@ -1,11 +1,26 @@
 
 async function loadProfile() {
   try {
-    const user = await userData();
-    if (!user) {
+    const response = await fetch("/api/dashboard.php", {
+      credentials: "include",
+    });
+
+    if (response.status === 401) {
+      window.location.href = "/login.html";
       return;
     }
-    document.querySelector("#firstname").textContent = user.firstname || "";
+
+    const result = await response.json();
+    const householdNameElement = document.querySelector("#householdName");
+    const userNameElement = document.querySelector("#userName");
+
+    if (householdNameElement) {
+      householdNameElement.textContent = result.household_name || "Dein Zuhause";
+    }
+
+    if (userNameElement) {
+      userNameElement.textContent = result.firstname || "–";
+    }
 
   } catch (error) {
     console.error(error)

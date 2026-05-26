@@ -8,14 +8,30 @@ function showSuccessPopup() {
   button.focus();
 }
 
+function showErrorPopup(message) {
+  const overlay = document.getElementById("errorOverlay");
+  const messageElement = document.getElementById("profileErrorTitle");
+  const button = document.getElementById("errorContinueBtn");
+
+  messageElement.textContent = message;
+  overlay.classList.remove("hidden");
+  button.focus();
+}
+
+function hideErrorPopup() {
+  document.getElementById("errorOverlay").classList.add("hidden");
+}
+
 document.getElementById("popupContinueBtn").addEventListener("click", () => {
   window.location.href = "settings.html";
 });
 
+document.getElementById("errorContinueBtn").addEventListener("click", hideErrorPopup);
+
 window.addEventListener("load", async function () {
   const user = await userData();
   if (!user) {
-    alert("Failed to load user data. Please try again.");
+    window.location.href = "login.html";
     return;
   }
 
@@ -53,12 +69,12 @@ document.getElementById("profilForm").addEventListener("submit", async (e) => {
       document.getElementById("password").value = "";
       showSuccessPopup();
     } else {
-      alert(result.message || "Profile update failed.");
+      showErrorPopup(result.message || "Profile update failed.");
     }
 
   } catch (error) {
     console.error("Error:", error);
-    alert("Something went wrong!");
+    showErrorPopup("Something went wrong!");
   }
 });
 

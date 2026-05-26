@@ -1,6 +1,5 @@
 let pendingMemberRemovalId = null;
 let pendingBoxRemovalId = null;
-let logoutRequested = false;
 
 async function loadHouseholdName() {
 	try {
@@ -212,43 +211,6 @@ if (confirmRemoveBoxBtn) {
 const cancelRemoveBoxBtn = document.getElementById("cancelRemoveBoxBtn");
 if (cancelRemoveBoxBtn) {
 	cancelRemoveBoxBtn.addEventListener("click", closeRemoveBoxPopup);
-}
-
-function openLogoutPopup() {
-	const overlay = document.getElementById("logoutOverlay");
-	if (overlay) {
-		overlay.classList.remove("hidden");
-	}
-}
-
-function closeLogoutPopup() {
-	const overlay = document.getElementById("logoutOverlay");
-	if (overlay) {
-		overlay.classList.add("hidden");
-	}
-	logoutRequested = false;
-}
-
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-	logoutBtn.addEventListener("click", (event) => {
-		event.preventDefault();
-		openLogoutPopup();
-	});
-}
-
-const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
-if (cancelLogoutBtn) {
-	cancelLogoutBtn.addEventListener("click", closeLogoutPopup);
-}
-
-const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
-if (confirmLogoutBtn) {
-	confirmLogoutBtn.addEventListener("click", () => {
-		logoutRequested = true;
-		closeLogoutPopup();
-		window.dispatchEvent(new Event("settingsLogoutConfirmed"));
-	});
 }
 
 loadHouseholdName();

@@ -22,9 +22,41 @@ async function performLogout() {
 
 const logoutBtn = document.getElementById("logoutBtn");
 const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+const logoutOverlay = document.getElementById("logoutOverlay");
+
+function openLogoutPopup() {
+  if (logoutOverlay) {
+    logoutOverlay.classList.remove("hidden");
+  }
+}
+
+function closeLogoutPopup() {
+  if (logoutOverlay) {
+    logoutOverlay.classList.add("hidden");
+  }
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (confirmLogoutBtn && logoutOverlay) {
+      openLogoutPopup();
+      return;
+    }
+
+    performLogout();
+  });
+}
 
 if (confirmLogoutBtn) {
-  confirmLogoutBtn.addEventListener("click", performLogout);
-} else if (logoutBtn) {
-  logoutBtn.addEventListener("click", performLogout);
+  confirmLogoutBtn.addEventListener("click", async () => {
+    closeLogoutPopup();
+    await performLogout();
+  });
+}
+
+if (cancelLogoutBtn) {
+  cancelLogoutBtn.addEventListener("click", closeLogoutPopup);
 }

@@ -7,11 +7,27 @@ function showSuccessPopup() {
     button.focus();
 }
 
+function showErrorPopup(message) {
+  const overlay = document.getElementById("errorOverlay");
+  const messageElement = document.getElementById("registerErrorTitle");
+  const button = document.getElementById("errorContinueBtn");
+
+  messageElement.textContent = message;
+  overlay.classList.remove("hidden");
+  button.focus();
+}
+
+function hideErrorPopup() {
+  document.getElementById("errorOverlay").classList.add("hidden");
+}
+
 document
     .getElementById("popupContinueBtn")
     .addEventListener("click", () => {
         window.location.href = "login.html";
     });
+
+document.getElementById("errorContinueBtn").addEventListener("click", hideErrorPopup);
 
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -34,10 +50,10 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     if (result.status === "success") {
       showSuccessPopup();
     } else {
-      alert(result.message || "Registration failed.");
+      showErrorPopup(result.message || "Registration failed.");
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("Something went wrong!");
+    showErrorPopup("Something went wrong!");
   }
 });

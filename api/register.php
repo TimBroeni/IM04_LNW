@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = trim($data['lastname'] ?? '');
 
     if (!$email || !$password) {
-        echo json_encode(["status" => "error", "message" => "Email and password and the firstname are required"]);
+        echo json_encode(["status" => "error", "message" => "Email, Passwort dürfen nicht leer sein."]);
         exit;
     }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email");
     $stmt->execute([':email' => $email]);
     if ($stmt->fetch()) {
-        echo json_encode(["status" => "error", "message" => "Email is already in use"]);
+        echo json_encode(["status" => "error", "message" => "Diese Email-Adresse ist bereits registriert."]);
         exit;
     }
 

@@ -77,8 +77,8 @@
         </form>
 
         <div class="profile-actions">
-          <button id="logoutBtn" class="secondary-button" type="button">Logout</button>
-          <a class="secondary-button link-button" href="index.html">Zurück</a>
+          <!-- <button id="logoutBtn" class="secondary-button" type="button">Logout</button> -->
+          <a class="secondary-button link-button" href="settings.html">Zurück</a>
         </div>
       </section>
     </main>
@@ -87,6 +87,13 @@
       <div class="popup" role="dialog" aria-modal="true" aria-labelledby="profileSuccessTitle">
         <p id="profileSuccessTitle">Dein Profil wurde erfolgreich aktualisiert.</p>
         <button id="popupContinueBtn" type="button">Weiter</button>
+      </div>
+    </div>
+
+    <div id="errorOverlay" class="popup-overlay hidden">
+      <div class="popup" role="dialog" aria-modal="true" aria-labelledby="profileErrorTitle">
+        <p id="profileErrorTitle"></p>
+        <button id="errorContinueBtn" type="button">Weiter</button>
       </div>
     </div>
 
