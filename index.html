@@ -9,23 +9,23 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
   </head>
-  <body>
-    <header>
+  <body class="app-page dashboard-page">
+    <header class="app-header">
       <div class="header_logo">
         <img src="/images/sortino_bildmarke.png" alt="SortinoLogo" />
       </div>
       <div class="header_text">
-        <h1>Übersicht</h1>
+        <h1 class="page-title">Übersicht</h1>
         <p id="householdName" class="householdName">Dein Zuhause</p>
       </div>
     </header>
 
-    <main>
-      <h2 id="welcomeMessage" class="welcome-message">Hallo <span id="userName">–</span></h2>
-      <div class="dashboard_cards">
-        <div class="dashboard_card1">
+    <main class="app-main dashboard-main">
+      <h2 id="welcomeMessage" class="welcome-message dashboard-greeting">Hallo <span id="userName">–</span></h2>
+      <div class="dashboard_cards dashboard-metrics">
+        <div class="dashboard_card1 dashboard-card dashboard-card--summary">
           <div class="dashboard_card1_allToys">
-            <img src="" alt="">
+            <img src="/images/nav/nav_toys.svg" alt="Spielzeuge" />
             <p id="toyCount">–</p>
             <p>Spielzeuge</p>
           </div>
@@ -35,27 +35,27 @@
           </div>
         </div>
 
-        <div class="dashbaord_card-2">
+        <div class="dashbaord_card-2 dashboard-card dashboard-card--count">
           <div class="dashboard_card2_allBoxes">
-            <img src="" alt="">
+            <img src="/images/nav/nav_points.svg" alt="Kisten" />
             <p id="boxCount">–</p>
             <p>Kisten</p>
           </div>
         </div>
       </div>
       
-      <section class="dashboard_toys-outside">
+      <section class="dashboard_toys-outside dashboard-card dashboard-card--warning">
         <h2 id="outsideToysHeading" class="hidden">Spielzeuge ausserhalb der Kiste</h2>
         <div id="toy_out" class="dashboard_toys-outside-list"></div>
       </section>
 
-      <div class="dashboard_clear hidden" id="dashboardClear">
+      <div class="dashboard_clear hidden dashboard-card dashboard-card--success" id="dashboardClear">
         <p>Alles aufgeräumt!</p>
       </div>
 
     </main>
-    <footer>
-      <nav id="navigation" aria-label="mainnavigation">
+    <footer class="app-footer">
+      <nav id="navigation" class="primary-navigation" aria-label="mainnavigation">
         <a href="index.html" class="active" aria-current="page">
           <span>Übersicht</span>
         </a>

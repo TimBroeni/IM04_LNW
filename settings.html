@@ -9,43 +9,43 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
     </head>
-    <body>
-        <h1>Einstellungen</h1>
-    <header>
+    <body class="app-page settings-page">
+    <header class="app-header">
         <div class="header_logo">
             <img src="/images/sortino_bildmarke.png" alt="SortinoLogo" />
         </div>
         <div class="header_text">
-            <h1>Einstellungen</h1>
+            <h1 class="page-title">Einstellungen</h1>
         </div>
     </header>
-    <main>
-
-<!-- PROFIL BEARBEITEN -->
-        <h2>Profil bearbeiten</h2>
-        <a href="profil.html">
-            <button id="editProfileBtn">Profil bearbeiten</button>
-        </a>
+    <main class="app-main settings-main">
 
 <!-- KISTENÜBERSICHT -->
-        <h2>Kistenübersicht</h2>
-        <a href="new_box.html">
-            <button id="newBoxBtn">Neue Kiste</button>
-        </a>
-        <ul id="boxList" class="box-list">
-            <!-- Kisten werden hier dynamisch hinzugefügt -->
-        </ul>
+        <section class="settings-card settings-card--boxes">
+            <h2>Kistenübersicht</h2>
+            <a href="new_box.html" class="settings-action-link">
+                <button id="newBoxBtn" type="button">Neue Kiste</button>
+            </a>
+            <ul id="boxList" class="box-list">
+                <!-- Kisten werden hier dynamisch hinzugefügt -->
+            </ul>
+        </section>
     
 <!-- HAUSHALTSMITGLIEDER -->
-        <h2 id="householdName">Dein Zuhause</h2>
-        <p>Dein Haushaltscode: <span id="householdCode"></span></p>
-        <ul id="householdMembersList" class="household-members-list">
-            <!-- Mitglieder werden hier dynamisch hinzugefügt -->
-        </ul>
+        <section class="settings-card settings-card--household">
+            <h2 id="householdName">Dein Zuhause</h2>
+            <p class="settings-meta">Dein Haushaltscode: <span id="householdCode"></span></p>
+            <ul id="householdMembersList" class="household-members-list">
+                <!-- Mitglieder werden hier dynamisch hinzugefügt -->
+            </ul>
+        </section>
 
-<!-- LOGOUT BUTTON -->
-        <br>
-        <button id="logoutBtn" class="secondary-button" type="button">Logout</button>
+<!-- ACTIONS -->
+        <div class="settings-actions">
+            <a href="profil.html" id="editProfileBtn" class="settings-text-btn settings-text-btn--profile" role="button">Profil bearbeiten</a>
+            <button id="logoutBtn" class="secondary-button settings-logout-btn settings-text-btn settings-text-btn--logout" type="button">Abmelden</button>
+        </div>
+
     </main>
 <!-- POPUPS -->
         <div id="removeMemberOverlay" class="popup-overlay hidden">
@@ -78,8 +78,8 @@
             </div>
         </div>
 
-    <footer>
-      <nav id="navigation" aria-label="Hauptnavigation">
+        <footer class="app-footer">
+            <nav id="navigation" class="primary-navigation" aria-label="Hauptnavigation">
         <a href="index.html">
             <span>Übersicht</span>
         </a>

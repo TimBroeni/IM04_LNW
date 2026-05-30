@@ -1,6 +1,670 @@
-/* Index */
+/* App shell */
 
+body.app-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 14px 14px 112px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.72), transparent 34%),
+    linear-gradient(180deg, #f7f7f2 0%, #f4f5ef 100%);
+  overflow-x: hidden;
+}
 
+body.app-page header,
+body.app-page main,
+body.app-page footer {
+  width: 100%;
+}
+
+body.app-page .app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 2px 10px;
+}
+
+body.app-page .header_logo {
+  flex: 0 0 auto;
+}
+
+body.app-page .header_logo img {
+  display: block;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.08));
+}
+
+body.app-page .header_text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+body.app-page .page-title,
+body.app-page .welcome-message,
+body.app-page .toy_usage-chart h3,
+body.app-page .toy_list h3,
+body.app-page .settings-card h2 {
+  margin: 0;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+}
+
+body.app-page .page-title {
+  font-size: clamp(1.55rem, 5vw, 1.85rem);
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+body.app-page .page-subtitle,
+body.app-page .householdName,
+body.app-page .dashboard-greeting,
+body.app-page .chart_header,
+body.app-page .settings-meta,
+body.app-page .toy_emptyState,
+body.app-page .dashboard_toys-outside p,
+body.app-page .toy_lastUsed,
+body.app-page .toy_usage_count,
+body.app-page .chart_usage,
+body.app-page .box-list li p:nth-child(2),
+body.app-page .household-members-list li p:nth-child(2) {
+  color: var(--text-muted);
+}
+
+body.app-page .page-subtitle,
+body.app-page .householdName {
+  margin-top: 2px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+body.app-page .app-main {
+  display: grid;
+  gap: 14px;
+}
+
+body.app-page .dashboard-greeting {
+  font-size: 1.55rem;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+body.app-page .dashboard-card,
+body.app-page .toy_usage-chart,
+body.app-page .toy_list,
+body.app-page .settings-card,
+body.app-page .dashboard_clear,
+body.app-page .toy-out-card {
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+body.app-page .dashboard-metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+  gap: 12px;
+}
+
+body.app-page .dashboard-card--summary,
+body.app-page .dashboard-card--count,
+body.app-page .dashboard-card--warning,
+body.app-page .dashboard-card--success,
+body.app-page .toy_usage-chart,
+body.app-page .toy_list,
+body.app-page .settings-card {
+  padding: 16px;
+}
+
+body.app-page .dashboard-card--summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+body.app-page .dashboard_card1_allToys,
+body.app-page .dashboard_card2_allBoxes {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  align-content: start;
+}
+
+body.app-page .dashboard_card1_allToys img,
+body.app-page .dashboard_card2_allBoxes img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+body.app-page #toyCount,
+body.app-page #toySorted,
+body.app-page #boxCount {
+  margin: 0;
+  font-size: 1.65rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+body.app-page .dashboard_card1_allToys p:last-child,
+body.app-page .dashboard_card2_allBoxes p:last-child {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+body.app-page .dashboard_card1_allToys:last-child {
+  align-self: end;
+  justify-items: end;
+  text-align: right;
+}
+
+body.app-page .dashboard_card1_allToys:last-child p:last-child {
+  color: #0f9d44;
+}
+
+body.app-page .dashboard-card--count .dashboard_card2_allBoxes {
+  min-height: 100%;
+  align-items: start;
+}
+
+body.app-page .dashboard-card--count {
+  display: flex;
+  align-items: stretch;
+}
+
+body.app-page .dashboard-card--count .dashboard_card2_allBoxes {
+  width: 100%;
+}
+
+body.app-page .dashboard-card--warning h2,
+body.app-page .dashboard-card--warning h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+body.app-page .dashboard_toys-outside-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+body.app-page .toy-out-card {
+  padding: 14px;
+  background: #fff8e6;
+  border-color: rgba(245, 158, 11, 0.18);
+}
+
+body.app-page .toy-out-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #7c4a00;
+}
+
+body.app-page .out-since {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #9a6700;
+}
+
+body.app-page .dashboard-card--success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  background: linear-gradient(180deg, #24c056 0%, var(--accent-dark) 100%);
+  color: #ffffff;
+}
+
+body.app-page .dashboard-card--success p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+body.app-page .toy_usage-chart h3,
+body.app-page .toy_list h3,
+body.app-page .settings-card h2 {
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+body.app-page .chart_header {
+  margin: 4px 0 14px;
+  font-size: 0.92rem;
+}
+
+body.app-page .chart_list {
+  display: grid;
+  gap: 12px;
+}
+
+body.app-page .chart_entry {
+  display: grid;
+  gap: 8px;
+}
+
+body.app-page .chart_entry-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+body.app-page .chart_toyName {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+body.app-page .chart_usage {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+body.app-page .chart_bar {
+  height: 12px;
+  border-radius: 999px;
+  background: #e9edf2;
+  overflow: hidden;
+}
+
+body.app-page .chart_bar_fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #35d06e 0%, var(--accent) 100%);
+}
+
+body.app-page .toy_emptyState {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+}
+
+body.app-page .toy_list ul,
+body.app-page .toy_list #toyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.app-page #toyList {
+  display: grid;
+  gap: 12px;
+}
+
+body.app-page #toyList li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+body.app-page #toyList li > .toy_name {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+body.app-page #toyList li > .toy_usage_count {
+  grid-column: 1 / 2;
+  grid-row: 2;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+body.app-page #toyList li > .toy_status {
+  grid-column: 1 / 2;
+  grid-row: 3;
+  justify-self: start;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+body.app-page #toyList li > .toy_lastUsed {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin: 2px 0 0;
+  font-size: 0.84rem;
+}
+
+body.app-page #toyList li > .toy_delete-btn,
+body.app-page #toyList li > .toy_update-btn {
+  align-self: start;
+  justify-self: end;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+body.app-page #toyList li > .toy_delete-btn {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+body.app-page #toyList li > .toy_update-btn {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+body.app-page #toyList li > .toy_delete-btn img,
+body.app-page #toyList li > .toy_update-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+body.app-page .settings-main {
+  display: grid;
+  gap: 14px;
+}
+
+body.app-page .settings-card {
+  display: grid;
+  gap: 12px;
+}
+
+body.app-page .settings-card h2 {
+  font-size: 1.08rem;
+}
+
+body.app-page .settings-meta {
+  margin: -4px 0 0;
+  font-size: 0.92rem;
+}
+
+body.app-page .settings-action-link {
+  display: block;
+  text-decoration: none;
+}
+
+body.app-page .settings-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 28px;
+  min-height: 72px;
+  padding: 6px 2px 0;
+  align-self: center;
+  width: 100%;
+}
+
+body.app-page .settings-text-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: auto;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body.app-page .settings-text-btn--profile {
+  color: #6b7280;
+}
+
+body.app-page .settings-text-btn--logout {
+  color: #ef4444;
+}
+
+body.app-page .settings-text-btn:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.18);
+  outline-offset: 2px;
+}
+
+body.app-page .settings-card button:not(.household-remove-btn),
+body.app-page .settings-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 15px;
+  padding: 13px 16px;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+body.app-page .settings-card button:not(.household-remove-btn),
+body.app-page .settings-logout-btn {
+  background: linear-gradient(180deg, #19b540 0%, var(--accent-dark) 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.22);
+}
+
+body.app-page .settings-logout-btn {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Ensure logout text is red even if generic rules set color earlier */
+body.app-page .settings-logout-btn,
+body.app-page .settings-text-btn--logout,
+body.app-page #logoutBtn {
+  color: #ef4444;
+}
+
+body.app-page .box-list,
+body.app-page .household-members-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.app-page .box-list li,
+body.app-page .household-members-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 4px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+body.app-page .box-list li p,
+body.app-page .household-members-list li p {
+  margin: 0;
+}
+
+body.app-page .box-list li p:first-child,
+body.app-page .household-members-list li p:first-child {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+body.app-page .box-list li p:nth-child(2),
+body.app-page .household-members-list li p:nth-child(2) {
+  font-size: 0.9rem;
+}
+
+body.app-page .household-remove-btn {
+  width: fit-content;
+  min-height: 0;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: transparent;
+  color: #ef4444;
+  border: 0;
+  box-shadow: none;
+  font-weight: 800;
+  justify-self: end;
+  align-self: center;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  white-space: nowrap;
+}
+
+body.app-page .popup-overlay {
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+body.app-page .popup {
+  width: min(100%, 360px);
+  border-radius: 20px;
+  padding: 24px 20px;
+}
+
+body.app-page .popup-actions {
+  flex-direction: column;
+}
+
+body.app-page .popup button {
+  width: 100%;
+}
+
+body.app-page #navigation {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  width: min(calc(100vw - 24px), 456px);
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  backdrop-filter: blur(18px);
+  z-index: 1000;
+}
+
+body.app-page #navigation {
+  display: flex;
+  gap: 8px;
+}
+
+body.app-page #navigation > a {
+  flex: 1 1 0;
+}
+
+body.app-page #navigation > .nav_list {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+body.app-page #navigation .nav_list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.app-page #navigation .nav_list li {
+  margin: 0;
+}
+
+body.app-page #navigation > a,
+body.app-page #navigation .nav_list a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 54px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+body.app-page #navigation > a::before,
+body.app-page #navigation .nav_list a::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.78;
+}
+
+body.app-page #navigation > a span,
+body.app-page #navigation .nav_list a span {
+  position: relative;
+  z-index: 1;
+}
+
+body.app-page #navigation > a.active,
+body.app-page #navigation > a[aria-current="page"],
+body.app-page #navigation .nav_list a.active,
+body.app-page #navigation .nav_list a[aria-current="page"] {
+  background: #e5e7eb;
+  color: var(--text-main);
+}
+
+body.app-page #navigation > a.active::before,
+body.app-page #navigation > a[aria-current="page"]::before,
+body.app-page #navigation .nav_list a.active::before,
+body.app-page #navigation .nav_list a[aria-current="page"]::before {
+  opacity: 1;
+}
+
+body.app-page #navigation a[href="index.html"]::before {
+  background-image: url("/images/nav/nav_home.svg");
+}
+
+body.app-page #navigation a[href="toys.html"]::before {
+  background-image: url("/images/nav/nav_toys.svg");
+}
+
+body.app-page #navigation a[href="settings.html"]::before {
+  background-image: url("/images/nav/nav_settings.svg");
+}
+
+body.app-page #navigation a:active {
+  transform: translateY(1px);
+}
+
+body.app-page .hidden {
+  display: none !important;
+}
 
 /* Login and registration pages */
 

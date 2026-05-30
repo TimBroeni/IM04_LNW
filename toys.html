@@ -9,30 +9,30 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
     </head>
-    <body>
-        <header>
+    <body class="app-page toys-page">
+        <header class="app-header">
             <div class="header_logo">
                 <img src="/images/sortino_bildmarke.png" alt="SortinoLogo" />
             </div>
             <div class="header_text">
-                <h1>Spielzeuge</h1>
-                <h2><span id="toys_total">–</span> Spielzeuge registriert</h2>
+                <h1 class="page-title">Spielzeuge</h1>
+                <h2 class="page-subtitle"><span id="toys_total">–</span> Spielzeuge registriert</h2>
             </div>
-            <button class="header_action-btn" id="addToy">
+            <button class="header_action-btn" id="addToy" aria-label="Spielzeug hinzufügen">
                 <a href="name_toy.html">+</a>
             </button>
         </header>
 
-        <main>
+        <main class="app-main toys-main">
             
-            <div class="toy_usage-chart">
+            <section class="toy_usage-chart dashboard-card">
                 <h3>Nutzungshäufigkeit</h3>
                 <p class="chart_header">In den letzten 7 Tagen</p>
                 <p id="toyUsageEmptyState" class="toy_emptyState hidden">Keine Nutzungsdaten vorhanden</p>
                 <div id="toyUsageChartList" class="chart_list" aria-live="polite"></div>
-            </div>
+            </section>
 
-            <div class="toy_list">
+            <section class="toy_list dashboard-card">
                 <h3>Alle Spielzeuge</h3>
                 <p id="toyEmptyState" class="toy_emptyState hidden">Füge zuerst dein erstes Spielzeug hinzu...</p>
                 <ul id="toyList">
@@ -74,8 +74,8 @@
 
         </main>
 
-        <footer>
-        <nav id="navigation">
+        <footer class="app-footer">
+        <nav id="navigation" class="primary-navigation" aria-label="Hauptnavigation">
             <ul class="nav_list">
                 <li>
                     <a href="index.html">
@@ -83,7 +83,7 @@
                     </a>
             </li>
             <li>
-                <a href="toys.html" class="active">
+                <a href="toys.html" class="active" aria-current="page">
                     <span>Spielzeuge</span>
                 </a>
             </li>
