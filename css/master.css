@@ -67,6 +67,19 @@ button.header_action-btn {
   background-color: #109530;
   color: white;
   border: none;
+  weight: bold;
+  text-decoration: none;
+}
+
+button.header_action-btn a,
+button.header_action-btn a:visited {
+  color: #ffffff;
+  weight: bold;
+  text-decoration: none;
+}
+
+button.header_action-btn:visited {
+  color: white;
 }
 
 /* Popup Styles */
