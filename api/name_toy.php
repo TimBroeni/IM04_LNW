@@ -96,6 +96,10 @@ try {
             exit;
         }
 
+        if ((!empty($toy['add_mode']) ? 1 : 0) === 0 && $toy['weight'] > 0) {
+            unset($_SESSION['toy_id'], $_SESSION['toy_name']);
+        }
+
         echo json_encode([
             'status' => 'success',
             'toy_id' => (int) $toy['id'],
