@@ -9,22 +9,48 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
 </head>
-<body>
-    <main>
-        <h1>Sortino-Kiste hinzufügen</h1>
-        <p>Suche unter deiner Sortino-Kiste die Seriennummer und vergib einen Namen für die Box.</p>
+<body class="form-page">
+    <main class="form-shell">
 
-        <form id="newBoxForm">
-            <label for="box_serialnumber">Seriennummer</label>
-            <input type="text" id="box_serialnumber" name="box_serialnumber" required />
+        <section class="form-card">
+            <div class="form-stack">
+                <div>
+                    <h1 class="form-title">Sortino-Kiste hinzufügen</h1>
+                    <p class="form-copy">Suche unter deiner Sortino-Kiste die Seriennummer und vergib einen Namen für die Box.</p>
+                </div>
 
-            <label for="box_name">Name der Kiste</label>
-            <input type="text" id="box_name" name="box_name" required />
+                <form id="newBoxForm" class="form-layout">
+                    <div class="field">
+                        <label for="box_serialnumber">Seriennummer</label>
+                        <div class="field-input">
+                            <span class="field-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect x="4" y="6" width="16" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8" />
+                                    <path d="M7 10h10M7 14h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <input type="text" id="box_serialnumber" name="box_serialnumber" required />
+                        </div>
+                    </div>
 
-            <button type="submit">Weiter</button>
-        </form>
+                    <div class="field">
+                        <label for="box_name">Name der Kiste</label>
+                        <div class="field-input">
+                            <span class="field-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M4.5 12.5 12 4l7.5 8.5V20h-15v-7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <input type="text" id="box_name" name="box_name" required />
+                        </div>
+                    </div>
 
-        <p id="boxMessage"></p>
+                    <button class="form-button" type="submit">Weiter</button>
+                </form>
+
+                <p id="boxMessage" class="form-message"></p>
+            </div>
+        </section>
 
     </main>
 

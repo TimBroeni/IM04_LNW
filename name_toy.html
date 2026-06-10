@@ -9,20 +9,38 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
 </head>
-<body>
-    <main>
-        <h1>Neues Spielzeug anlegen</h1>
-        <p>Gib zuerst den Namen des Spielzeugs ein.</p>
+<body class="form-page">
+    <main class="form-shell">
 
-        <form id="nameToyForm">
-            <label for="toy_name">Spielzeugname</label>
-            <input type="text" id="toy_name" name="toy_name" required />
-            <button type="submit">Weiter</button>
-        </form>
+        <section class="form-card">
+            <div class="form-stack">
+                <div>
+                    <h1 class="form-title">Neues Spielzeug anlegen</h1>
+                    <p class="form-copy">Gib zuerst den Namen des Spielzeugs ein.</p>
+                </div>
 
-        <button type="button" id="skipToyButton">Spielzeug später hinzufügen</button>
+                <form id="nameToyForm" class="form-layout">
+                    <div class="field">
+                        <label for="toy_name">Spielzeugname</label>
+                        <div class="field-input">
+                            <span class="field-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <circle cx="12" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.8" />
+                                    <path d="M5 19c1.5-3.3 4.1-5 7-5s5.5 1.7 7 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <input type="text" id="toy_name" name="toy_name" required />
+                        </div>
+                    </div>
 
-        <p id="toyMessage"></p>
+                    <button class="form-button" type="submit">Weiter</button>
+                </form>
+
+                <button class="secondary-button" type="button" id="skipToyButton">Spielzeug später hinzufügen</button>
+
+                <p id="toyMessage" class="form-message"></p>
+            </div>
+        </section>
     </main>
 
     <footer></footer>

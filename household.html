@@ -9,18 +9,25 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
 </head>
-<body>
-    <main>
-        <h1>Haushalt verwalten</h1>
-        <p>Möchtest du einem bestehenden Haushalt beitreten oder einen neuen Haushalt erstellen?</p>
+<body class="form-page">
+    <main class="form-shell">
 
-        <section>
-            <button type="button" onclick="window.location.href='/new_household.html'">Neuen Haushalt erstellen</button>
-            <button type="button" onclick="window.location.href='/join_household.html'">Einem Haushalt beitreten</button>
+        <section class="form-card">
+            <div class="form-stack">
+                <div>
+                    <h1 class="form-title">Haushalt verwalten</h1>
+                    <p class="form-copy">Möchtest du einem bestehenden Haushalt beitreten oder einen neuen Haushalt erstellen?</p>
+                </div>
+
+                <div class="choice-grid">
+                    <button class="form-button" type="button" onclick="window.location.href='/new_household.html'">Neuen Haushalt erstellen</button>
+                    <button class="secondary-button" type="button" onclick="window.location.href='/join_household.html'">Einem Haushalt beitreten</button>
+                </div>
+            </div>
         </section>
     </main>
 
-<footer></footer>
-<script src="/js/auth.js"></script>
+    <footer></footer>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

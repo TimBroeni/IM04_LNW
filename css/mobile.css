@@ -772,6 +772,47 @@ body.form-page .form-card {
   backdrop-filter: blur(10px);
 }
 
+body.form-page .form-stack {
+  display: grid;
+  gap: 14px;
+}
+
+body.form-page .form-title {
+  margin: 0;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+  font-size: clamp(1.55rem, 5vw, 1.95rem);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+body.form-page .form-copy {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+body.form-page .form-message {
+  margin: 0;
+  min-height: 1.4em;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+body.form-page .form-message:empty {
+  display: none;
+}
+
+body.form-page .choice-grid {
+  display: grid;
+  gap: 12px;
+}
+
+body.form-page .choice-grid .form-button,
+body.form-page .choice-grid .secondary-button {
+  min-height: 58px;
+}
+
 body.form-page .form-tabs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

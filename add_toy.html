@@ -9,15 +9,24 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/desktop.css" />
 </head>
-<body>
-    <main>
-        <h1>Spielzeug in die Kiste legen</h1>
-        <p>Bitte lege das Spielzeug jetzt in die Kiste.</p>
+<body class="form-page">
+    <main class="form-shell">
 
-        <button type="button" id="backToNameButton">Zurück</button>
-        <button type="button" id="skipToDashboardButton">Später hinzufügen</button>
+        <section class="form-card">
+            <div class="form-stack">
+                <div>
+                    <h1 class="form-title">Spielzeug in die Kiste legen</h1>
+                    <p class="form-copy">Bitte lege das Spielzeug jetzt in die Kiste.</p>
+                </div>
 
-        <p id="toyMessage"></p>
+                <div class="choice-grid">
+                    <button class="form-button" type="button" id="backToNameButton">Zurück</button>
+                    <button class="secondary-button" type="button" id="skipToDashboardButton">Später hinzufügen</button>
+                </div>
+
+                <p id="toyMessage" class="form-message"></p>
+            </div>
+        </section>
     </main>
 
     <div id="toyAddedOverlay" class="popup-overlay hidden">
