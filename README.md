@@ -310,7 +310,7 @@ Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Micr
 Wenn ein Spielzeug aus der Kiste genommen wird, wird ein Eintrag in der `toy_events` Tabelle gemacht.
 
 Wenn man in der App ein neues Spielzeug erfassen will, wird in der `boxes` Tabelle der `add_mode` auf `true` gesetzt, und ein neuer Eintrag in der `toys` Tabelle erstellt, mit einem `weight` von `0`. Wenn 15s nichts in die Box gelegt wird, bricht die App den Vorgang ab. 
-Der MC fragt **jede Sekunde?** dem Server nach ob die Kisten im add_mode ist, und wenn ja erfasst es das neue Gewicht im `toy` Eintrag von vorher.
+Der MC fragt alle drei Sekunden dem Server nach ob die Kisten im add_mode ist, und wenn ja erfasst es das neue Gewicht im `toy` Eintrag von vorher.
 
 ### ERM //Luc
 ![ERM Diagramm](readme-assets/ERM.png) 
