@@ -52,7 +52,7 @@ Die Aktuelle Webapp, so wie sie jetzt steht, enthält die Basis unserer geplante
 |Kategorien für Spielzeuge|WebApp|Ursprünglich war gedacht, dass man beim hinzufügen eines Spielzeuges klassifizierungen geben kann, z.B. ob ein Spielzeug schwer oder fragile ist. In der Aufräum-Gamification hätte die Box priorisieren sollen, zuerst schwere Spielzeuge einzuräumen und erst dann die leichten, welche schnell kaputt gehen können. Weil die Box-Gamification weg fiel, wurde diese Angabe bei den Speilzeugen entfernt. Das gewicht wird lediglich genutzt, weil anhand des Gewichts das jeweilige Spielzeug erkannt wird. Dieses Feature wurde nicht eingebaut, weil die Gamification weg fiel. Die Box musste nicht mehr zwingend wissen, welche Spielzeuge zuerst eingeräumt werden müssen. Deswegen wurde dieses Feature überflüssig.|
 |Kontrolle über Gamification|WebApp|In der Webapp sollte es in einem Haushalt mehrere Rollen geben. Eltern hätten Admin-Rechte und könnten Einstellungen an der Gamification vornehmen z.B. wie viel Punkte das Kind fürs Aufräumen bekommt, wie viele Punkte eine Belohnung kostet, wann der Stichzeitpunkt wo die Kiste kontrolliert, ob alles versorgt ist und man hätte einstellen können, wie hoch die Toleranz ist, wie viele Spielzeuge über nach draussen bleiben dürfen. Das Kind hätte dann trotzdem einen Punkt erhalten, auch wenn z.B. zwei Spielzeuge nicht eingeräumt sind. Die Gamification hätte man auch vollkommen deaktivieren können. Dann würde das Punktesystem für den Entsprechenden Haushalt deaktiviert sein. Weil die Gamification weg fiel müssen die Game-Settings nicht mehr eingestellt werden.|
 
-## Setup //Luc ist für das Video und diesen Teil verantwortlich
+## Setup
 
 ### Installationsanleitung WebApp //Bröner
 
@@ -69,7 +69,7 @@ Die Aktuelle Webapp, so wie sie jetzt steht, enthält die Basis unserer geplante
 
 Um das physische Artefakt nachbauen zu können muss mann die Komponenten nach Komponentenliste & Steckplan zusammen bauen. Danach müssen die WLAN Credentials in der `sortino_OS.ino`-Datei hinterlegt werden, sie muss anschliessend kompiliert werden und auf das Microcontroller hochladen werden.
 
-#### Komponenten //Carlo, Bröner (macht Webapp Teil vom Komponentenplan), Luc macht Server
+#### Komponenten
 - ESP32C6
 - OLED Display
 - MP3 Player mit Lautsprecher
@@ -187,8 +187,6 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 ### Komponentenplan
 
 ![Komponentenplan](readme-assets/Komponentenplan.png)
-
-// Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
 
 ### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\] 
 
@@ -319,7 +317,7 @@ TB: !!!!!!!! --> Kopfbereich
 └── toys.html                                   ← xy...
 ```
 
-### Datenschnittstelle //Luc
+### Datenschnittstelle
 Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und der Webapp.
 
 Wenn ein Spielzeug aus der Kiste genommen wird, wird ein Eintrag in der `toy_events` Tabelle gemacht.
@@ -327,7 +325,7 @@ Wenn ein Spielzeug aus der Kiste genommen wird, wird ein Eintrag in der `toy_eve
 Wenn man in der App ein neues Spielzeug erfassen will, wird in der `boxes` Tabelle der `add_mode` auf `true` gesetzt, und ein neuer Eintrag in der `toys` Tabelle erstellt, mit einem `weight` von `0`. Wenn 15s nichts in die Box gelegt wird, bricht die App den Vorgang ab. 
 Der MC fragt alle drei Sekunden dem Server nach ob die Kisten im add_mode ist, und wenn ja erfasst es das neue Gewicht im `toy` Eintrag von vorher.
 
-### ERM //Luc
+### ERM
 ![ERM Diagramm](readme-assets/ERM.png) 
 - **households**
   - Zentrale Tabelle für Haushalte/Familien
