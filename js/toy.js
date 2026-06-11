@@ -81,6 +81,9 @@ async function loadToyTotal() {
         const status = document.createElement("p");
         status.className = "toy_status";
         status.textContent = toy.status || "Draussen";
+        if (status.textContent === "In Kiste") {
+          status.classList.add("toy_status--in-box");
+        }
 
         listItem.append(name, toy_usage_count, deleteButton, updateButton, status, lastUsed);
         toyListElement.appendChild(listItem);

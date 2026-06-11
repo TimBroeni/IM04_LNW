@@ -383,6 +383,11 @@ body.app-page #toyList li > .toy_status {
   font-weight: 700;
 }
 
+body.app-page #toyList li > .toy_status.toy_status--in-box {
+  background: #dcfce7;
+  color: #14532d;
+}
+
 body.app-page #toyList li > .toy_lastUsed {
   grid-column: 1 / -1;
   grid-row: 4;
