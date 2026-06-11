@@ -22,7 +22,10 @@ Unsere Kiste motiviert Kinder zum aufräumen, sie erlässt jeden Abend um 18:30 
 Die Kiste erkennt Spielzeuge anhand des Gewichts. 
 Über die Web-App können die Eltern einsehen, welche Spielzeuge gerade ausserhalb der Kiste sind, und welches die beliebtesten Spielzeuge sind.
 
-\[*Bilder / GIFs (optional)*\]
+* **WebApp:** [https://im04.tim-broenimann.ch](https://im04.tim-broenimann.ch)  
+* **Video-Dokumentation:** [Link zum Video auf Youtube](https://www.youtube.com/watch?v=574Dd3WErXQ) 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/574Dd3WErXQ?si=FwSLEsqNwy2xtfZq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## UX & Konzeption
 
@@ -69,9 +72,6 @@ Es hätte das Kind instruiert, welches Spielzeug es als Nächstes in die Kiste l
 Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir weggelassen, da wir die Belohnungen aus der Webapp aus Zeitgründen gestrichen haben.
 
 ## Setup //Luc ist für das Video und diesen Teil verantwortlich
-
-* **WebApp:** [https://im04.tim-broenimann.ch](https://im04.tim-broenimann.ch)  
-* **Video-Dokumentation:** [Link zum Video auf Youtube](http://link.zum.video) 
 
 ### Installationsanleitung WebApp //Bröner
 
