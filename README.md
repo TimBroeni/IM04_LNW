@@ -86,6 +86,8 @@ Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir
 
 ### Bauanleitung Physical Computing
 
+Um das physische Artefakt nachbauen zu können muss mann die Komponenten nach Komponentenliste & Steckplan zusammen bauen. Danach müssen die WLAN Credentials in der `sortino_OS.ino`-Datei hinterlegt werden, sie muss anschliessend kompiliert werden und auf das Microcontroller hochladen werden.
+
 #### Komponenten //Carlo, Bröner (macht Webapp Teil vom Komponentenplan), Luc macht Server
 - ESP32C6
 - OLED Display
@@ -96,15 +98,43 @@ Auch die Punkte, die man für pünktliches Aufräumen erhalten hätte, haben wir
 Der ESP32C6 ist das Kernstück, woran alle Physischen Komponenten verbunden werden.
 Im Steckplan sieht man, an welche Pins, welche Komponenten angeschlossen werden.
 
-* ***Was muss ich wie bauen, verbinden, installieren?***  
-* *ergänze: **Komponentenplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
-  * *die eingesetzten Komponenten*  //Carlo
-  * *die verbundenen Sensoren und Aktoren*  //Carlo
-  * *die Programme (mit Dateinamen)*  //Carlo, Luc
-  * *die Kommunikationswege*  //Luc
-* *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
-  * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
-* *ggf. **Bildmaterial***
+#### Steckplan
+![Steckplan](readme-assets/Steckplan.png)
+
+#### Programme
+
+|Datei|Rolle|
+|--|--|
+|`sortino_OS.ino`|Das Hauptprogramm, welches Setup und Loop festlegt. Im Setup wird die WLAN-Verbindung erstellt und sowohl der Gewichtssensor als auch der Audioplayer initialisiert. In der Loop wird die Uhrzeit überprüft, um den Aufräum-Reminder auszulösen. Es wird nach Gewichtsänderungen überprüft, um das Reinlegen oder Herausnehmen von Spielzeugen zu erfassen. Ebenso wird nach dem `add_mode` überprüft, um neue Spielzeuge zu erfassen.|
+|`cJSON/cJSON.c`|Arduino JSON Library|
+|`cJSON/cJSON.h`|Arduino JSON Library|
+|`Adafruit_BusIO_Register.cpp`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_BusIO_Register.h`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_GenericDevice.cpp`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_GenericDevice.h`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_GFX.cpp`|OLED Display funktionalität. Arduino Adafruit GFX Library|
+|`Adafruit_GFX.h`|OLED Display funktionalität. Arduino Adafruit GFX Library|
+|`Adafruit_I2CDevice.cpp`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_I2CDevice.h`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_I2CRegister.h`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_NeoPixel.cpp`|LED Ring funktionalität. Arduino Adafruit NeoPixel Library|
+|`Adafruit_NeoPixel.h`|LED Ring funktionalität. Arduino Adafruit NeoPixel Library|
+|`Adafruit_SPIDevice.cpp`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_SPIDevice.h`|Arduino Adafruit GFX dependency. Arduino Adafruit Bus IO Library|
+|`Adafruit_SSD1306.cpp`|OLED Display funktionalität. Arduino Adafruit SSD1306 Library|
+|`Adafruit_SSD1306.h`|OLED Display funktionalität. Arduino Adafruit SSD1306 Library|
+|`Arduino_JSON.h`|Arduino JSON Library|
+|`audioplayer.h`|Audio player funktionalität. Diese Datei wird in mc.ino eingebunden.|
+|`esp.c`|LED Ring funktionalität. Arduino Adafruit NeoPixel Library|
+|`gfxfont.h`|OLED Display funktionalität. Arduino Adafruit GFX Library|
+|`glcdfont.c`|OLED Display funktionalität. Arduino Adafruit GFX Library|
+|`HX711.cpp`|Gewichsensor funktionalität. Arduino HX711 Library|
+|`HX711.h`|Gewichsensor funktionalität. Arduino HX711 Library|
+|`JSON.cpp`|Arduino JSON Library|
+|`JSON.h`|Arduino JSON Library|
+|`JSONVar.cpp`|Arduino JSON Library|
+|`JSONVar.h`|Arduino JSON Library|
+|`splash.h`|OLED Display funktionalität. Arduino Adafruit SSD1306 Library|
 
 #### Kommunikationswege / API Schnittstellen
 
@@ -172,6 +202,10 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 ```
 
 ## Technische Details //Luc
+
+### Komponentenplan
+
+![Komponentenplan](readme-assets/Komponentenplan.png)
 
 // Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
 
