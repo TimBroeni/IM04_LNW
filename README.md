@@ -25,8 +25,6 @@ Die Kiste erkennt Spielzeuge anhand des Gewichts.
 * **WebApp:** [https://im04.tim-broenimann.ch](https://im04.tim-broenimann.ch)  
 * **Video-Dokumentation:** [Link zum Video auf Youtube](https://www.youtube.com/watch?v=574Dd3WErXQ) 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/574Dd3WErXQ?si=FwSLEsqNwy2xtfZq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ## UX & Konzeption
 
 *In diesem Teil werden die gemeinsamen Schritte aus der UX-Abgabe dokumentiert, damit sich hier alles vollständig an einem Ort befindet (betrifft WebApp und Physical Computing)*
