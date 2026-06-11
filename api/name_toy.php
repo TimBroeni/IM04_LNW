@@ -1,4 +1,9 @@
 <?php
+// Spielzeug-Anlege-API
+// - Legt ein neues Spielzeug in der Datenbank an oder löscht einen angelegten Entwurf
+// - Wird von name_toy.html, add_toy.html und name_toy.js/js/add_toy.js genutzt
+// - Holt die household_id des Nutzers und liest bzw. ändert toys und boxes
+// - Speichert den neuen Spielzeugentwurf in der Session für den weiteren Ablauf
 session_start();
 header('Content-Type: application/json');
 

@@ -1,3 +1,9 @@
+// Einstellungsseite-Verwaltung
+// - Lädt Kisten und Haushaltsmitglieder dynamisch aus der API
+// - Zeigt Haushaltscode und Verwaltungs-Optionen an
+// - Öffnet Bestätigungs-Dialoge für Löschen von Kisten und Mitgliedern
+// - Arbeitet mit settings.php, box.php und settings.html
+
 let pendingMemberRemovalId = null;
 let pendingBoxRemovalId = null;
 

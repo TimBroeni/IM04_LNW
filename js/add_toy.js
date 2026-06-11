@@ -1,3 +1,9 @@
+// Spielzeug Hinzufügen
+// - Zeigt die Anweisung, das Spielzeug in die Kiste zu legen
+// - Bietet Zurück- und Später-Optionen an
+// - Zeigt Erfolgs-Popup und navigiert weiter
+// - Arbeitet mit name_toy.php, add_toy.html und dashboard
+
 const backToNameButton = document.getElementById("backToNameButton");
 const skipToDashboardButton = document.getElementById("skipToDashboardButton");
 const toyMessage = document.getElementById("toyMessage");

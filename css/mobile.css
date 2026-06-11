@@ -1,4 +1,9 @@
-/* App shell */
+/* Mobile-App-Layout
+  - gestaltet die kleinen Bildschirmansichten für Dashboard, Spielzeuge und Einstellungen
+  - arbeitet mit allen HTML-Seiten zusammen, die body.app-page oder body.form-page nutzen
+  - setzt Abstände, Karten, Navigation, Listen und Popup-Verhalten für Mobilgeräte um
+  - baut auf den Variablen aus master.css auf
+  - ergänzt desktop.css um die Ansicht für kleinere Displays */
 
 body.app-page {
   max-width: 480px;

@@ -1,3 +1,9 @@
+// Login-Verwaltung
+// - Nimmt E-Mail und Passwort entgegen und sendet sie an die API
+// - Zeigt Fehler-Popups bei fehlgeschlagener Anmeldung an
+// - Leitet bei Erfolg zu household.html oder index.html weiter
+// - Arbeitet mit login.php und login.html
+
 // login.js
 function showLoginErrorPopup() {
   const overlay = document.getElementById("loginErrorOverlay");

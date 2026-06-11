@@ -1,3 +1,8 @@
+// Neue Haushalt-Erstellung
+// - Nimmt Haushaltsname im Formular entgegen und erstellt einen neuen Haushalt
+// - Leitet bei Erfolg zum Dashboard weiter
+// - Arbeitet mit household.php und new_household.html
+
 const createHouseholdForm = document.getElementById("createHouseholdForm");
 const householdMessage = document.getElementById("householdMessage");
 

@@ -1,3 +1,10 @@
+    /* Globale Basisstile
+      - Definiert Farb-, Schatten- und Schriftvariablen für die gesamte App
+      - Wird von allen HTML-Seiten und den beiden responsiven Stylesheets genutzt
+      - Steuert Grundlayout, Buttons, Popups und Formular-Komponenten
+      - Arbeitet mit mobile.css und desktop.css zusammen
+      - Beeinflusst alle Seiten über gemeinsame Variablen und Basisklassen */
+
 :root {
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --page-top: #edf8f1;

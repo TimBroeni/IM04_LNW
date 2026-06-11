@@ -1,3 +1,9 @@
+// Haushalt-Beitrittsverwaltung
+// - Nimmt Haushaltscode im Formular entgegen und sendet ihn an die API
+// - Zeigt Erfolgs- oder Fehlermeldungen an
+// - Leitet bei Erfolg zu household.html oder dashboard weiter
+// - Arbeitet mit household.php und join_household.html
+
 const joinHouseholdForm = document.getElementById("joinHouseholdForm");
 const householdMessage = document.getElementById("householdMessage");
 

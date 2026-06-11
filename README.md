@@ -411,7 +411,8 @@ Der MC fragt alle drei Sekunden dem Server nach ob die Kisten im add_mode ist, u
 
 !!!!!!!!!!!!!
 
-
+- Spielzeuge müssen noch nach Kisten sortiert werden
+- Die Auräumzeit könnte von den Eltern noch festgelegt werden
 
 * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  

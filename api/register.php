@@ -1,5 +1,9 @@
 <?php
-// register.php
+// Registrierungs-API
+// - Legt neue Benutzerkonten an
+// - Wird von register.html und register.js verwendet
+// - Prüft die users-Tabelle auf doppelte E-Mail-Adressen und liest dort vorhandene Datensätze
+// - Speichert E-Mail, Passwort-Hash, Vorname und Nachname in der Datenbank
 session_start();
 header('Content-Type: application/json');
 

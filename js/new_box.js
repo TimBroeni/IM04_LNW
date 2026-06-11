@@ -1,3 +1,9 @@
+// Neue Sortino-Kiste hinzufügen
+// - Nimmt Seriennummer und Kistenname entgegen und sendet sie an die API
+// - Zeigt Statusmeldungen nach dem Absenden an
+// - Leitet bei Erfolg zum Dashboard weiter
+// - Arbeitet mit new_box.php und new_box.html
+
 const newBoxForm = document.getElementById("newBoxForm");
 const boxMessage = document.getElementById("boxMessage");
 

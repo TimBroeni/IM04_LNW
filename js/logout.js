@@ -1,3 +1,9 @@
+// Logout-Verwaltung
+// - Öffnet ein Bestätigungs-Popup beim Logout-Button
+// - Führt die Abmeldung durch und löscht die Sitzung
+// - Leitet zur Login-Seite weiter
+// - Arbeitet mit logout.php, settings.html und profil.html
+
 // logout.js
 async function performLogout() {
   try {

@@ -1,5 +1,9 @@
 <?php
-// logout.php
+// Logout-API
+// - Beendet die aktuelle Session und meldet den Nutzer ab
+// - Wird von logout.js und den Logout-Buttons in settings.html/profil.html genutzt
+// - Holt keine Daten aus der Datenbank
+// - Liefert nur eine JSON-Antwort für den erfolgreichen Abmeldeprozess
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

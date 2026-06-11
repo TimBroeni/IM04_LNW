@@ -1,3 +1,9 @@
+// Spielzeugübersicht und -verwaltung
+// - Lädt Spielzeugliste mit Nutzungsdaten aus der API
+// - Zeigt Nutzungschart der letzten 7 Tage an
+// - Verwaltet Dialoge zum Löschen und Umbenennen von Spielzeugen
+// - Arbeitet mit toy.php, toyUpdate.php und toys.html
+
 let pendingToyDeleteId = null;
 let pendingToyUpdateId = null;
 

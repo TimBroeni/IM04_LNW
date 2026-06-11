@@ -1,3 +1,9 @@
+/* Desktop-Ergänzungen
+   - Passt Formulare und Layouts für größere Bildschirme ab 1024px an
+   - Arbeitet mit allen HTML-Formularseiten zusammen, die body.form-page verwenden
+   - Ergänzt die Basiswerte aus master.css und die Mobile-Ansicht aus mobile.css
+   - Verändert Spaltenbreiten, Abstände und Kartenmaße für Desktop-Displays
+   - Greift auf dieselben Klassen und Komponenten wie die übrigen Stylesheets zu */
 @media (min-width: 1024px) {
   body.form-page {
     padding: 40px 28px;

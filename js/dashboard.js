@@ -1,3 +1,7 @@
+// Dashboard-Inhalte laden
+// - Lädt Haushaltsnamen, Nutzerbegrüßung und Spielzeugstatistiken
+// - Zeigt offene Spielzeuge im Warnbereich an
+// - Arbeitet mit dashboard.php und index.html
 
 async function loadProfile() {
   try {

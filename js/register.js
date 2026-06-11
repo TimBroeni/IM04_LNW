@@ -1,3 +1,9 @@
+// Registrierungs-Verwaltung
+// - Verarbeitet neue Nutzerkonten mit Name, E-Mail und Passwort
+// - Zeigt Erfolg- und Fehler-Popups nach dem Absenden an
+// - Leitet bei Erfolg zur Login-Seite weiter
+// - Arbeitet mit /api/register.php und register.html
+
 // register.js
 function showSuccessPopup() {
     const overlay = document.getElementById("successOverlay");

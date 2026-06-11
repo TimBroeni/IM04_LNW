@@ -1,5 +1,9 @@
 <?php
-// login.php
+// Login-API
+// - Prüft E-Mail und Passwort beim Anmelden
+// - Wird von login.html und js/login.js aufgerufen
+// - Holt Benutzer-ID, Passwort-Hash und household_id aus der users-Tabelle
+// - Setzt die Session für den weiteren Zugriff der Webapp
 ini_set('session.cookie_httponly', 1);
 // ini_set('session.cookie_secure', 1); // if using HTTPS
 session_start();

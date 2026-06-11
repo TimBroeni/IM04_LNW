@@ -1,4 +1,8 @@
-// profil.js
+// Profilseite-Verwaltung
+// - Lädt Nutzerdaten in Formularfelder und speichert Änderungen
+// - Zeigt Erfolgs- und Fehler-Popups nach dem Update an
+// - Leitet nach erfolgreicher Änderung zu Einstellungen weiter
+// - Arbeitet mit profilUpdate.php, profil.html, logout.js und settings.html
 
 function showSuccessPopup() {
   const overlay = document.getElementById("successOverlay");

@@ -1,4 +1,9 @@
 <?php
+// Kisten-API
+// - Legt eine bestehende Sortino-Kiste dem aktuellen Haushalt zu
+// - Wird von new_box.html und new_box.js aufgerufen
+// - Holt die household_id des Nutzers und prüft die Box über die Seriennummer
+// - Schreibt name, household_id und add_mode in die boxes-Tabelle
 session_start();
 header('Content-Type: application/json');
 

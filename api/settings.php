@@ -1,4 +1,9 @@
 <?php
+// Einstellungs-API
+// - Liefert Haushaltsdaten, Mitglieder und Kisten für die Einstellungen
+// - Verarbeitet auch das Entfernen von Mitgliedern und Kisten
+// - Wird von settings.html und settings.js genutzt
+// - Holt household_name, household_code, user und boxes aus der Datenbank
 session_start();
 header('Content-Type: application/json');
 

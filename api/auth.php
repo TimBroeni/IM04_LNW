@@ -1,5 +1,9 @@
 <?php
-// index.php (API that returns JSON about the logged-in user)
+// Authentifizierungs-API
+// - Prüft die aktive Session und liefert die angemeldete user_id zurück
+// - Wird von geschützten HTML- und JavaScript-Dateien zusammen mit auth.js genutzt
+// - Holt keine Daten aus der Datenbank, sondern arbeitet mit der Session
+// - Dient als Grundlage für den Zugriffsschutz in der gesamten Anwendung
 session_start();
 
 if (!isset($_SESSION['user_id'])) {

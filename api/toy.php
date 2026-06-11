@@ -1,4 +1,9 @@
 <?php
+// Spielzeug-Lese-API
+// - Liefert die Spielzeugliste mit Nutzungswerten und Status
+// - Wird von toys.html und toy.js genutzt
+// - Holt toys, toy_events und den household-Bezug des aktuellen Nutzers aus der DB
+// - Versorgt die Übersicht mit Gesamtzahl, Wochenwerten und Statusinformationen
 session_start();
 header('Content-Type: application/json');
 

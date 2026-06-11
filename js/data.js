@@ -1,3 +1,8 @@
+// Benutzerdaten abrufen
+// - Lädt die aktuellen Profildaten des angemeldeten Nutzers
+// - Gibt die Nutzerdaten oder null bei Fehler zurück
+// - Arbeitet mit profil.php
+
 async function userData() {
   try {
     const response = await fetch("/api/profil.php", {

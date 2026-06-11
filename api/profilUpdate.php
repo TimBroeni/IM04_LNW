@@ -1,5 +1,9 @@
 <?php
-// profilUpdate.php
+// Profil-Update-API
+// - Speichert Änderungen an E-Mail, Namen und optional Passwort
+// - Wird von profil.html und profil.js genutzt
+// - Prüft die users-Tabelle auf doppelte E-Mail-Adressen und aktualisiert den aktuellen Datensatz
+// - Schreibt die neuen Profildaten zurück in die Session und Datenbank
 
 session_start();
 require_once '../system/config.php';

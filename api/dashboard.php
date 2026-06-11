@@ -1,5 +1,9 @@
 <?php
-
+// Dashboard-Daten-API
+// - Lädt die Startseitenwerte für Haushalt, Nutzer und Spielzeugübersicht
+// - Wird von index.html und dashboard.js verwendet
+// - Holt Nutzer, Haushalt, Kisten, Spielzeuge und offene Spielzeuge aus der DB
+// - Dient als zentrale Datenquelle für das Dashboard und deren Warnhinweise
 session_start();
 header('Content-Type: application/json');
 

@@ -1,4 +1,9 @@
 <?php
+// Spielzeug-Update- und Lösch-API
+// - Benennt ein Spielzeug um oder löscht es inklusive zugehöriger Events
+// - Wird von toys.html und js/toy.js genutzt
+// - Holt household_id und prüft das betroffene Spielzeug in der toys-Tabelle
+// - Schreibt Änderungen direkt in toys und toy_events
 session_start();
 header('Content-Type: application/json');
 

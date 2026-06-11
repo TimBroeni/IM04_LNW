@@ -1,4 +1,9 @@
 <?php
+// Haushalt-API
+// - Verarbeitet das Erstellen und Beitreten zu Haushalten
+// - Wird von household.html, join_household.js und new_household.js genutzt
+// - Holt den aktuellen user.household_id und sucht Haushalte per Code
+// - Schreibt neue Haushalte an und aktualisiert die Zuordnung des Nutzers
 session_start();
 header('Content-Type: application/json');
 

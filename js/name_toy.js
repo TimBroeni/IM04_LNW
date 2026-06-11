@@ -1,3 +1,9 @@
+// Spielzeug-Benennung
+// - Nimmt den Namen des neuen Spielzeugs entgegen
+// - Sendet die Eingabe an die API und erstellt das Spielzeug
+// - Bereitet add_toy.html vor, um auf die Gewichtserkennung zu warten
+// - Arbeitet mit /api/name_toy.php, name_toy.html und add_toy.html
+
 const nameToyForm = document.getElementById("nameToyForm");
 const skipToyButton = document.getElementById("skipToyButton");
 const toyMessage = document.getElementById("toyMessage");

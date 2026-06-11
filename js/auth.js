@@ -1,3 +1,9 @@
+// Authentifizierungs-Check
+// - Prüft beim Laden, ob der Nutzer noch angemeldet ist.
+// - Speichert die user_id und leitet zu Login weiter, falls nicht angemeldet
+// - Arbeitet mit auth.php und login.html
+// - Wird auf allen geschützten Seiten eingebunden
+
 let authUserId = 0;
 
 async function checkAuth() {

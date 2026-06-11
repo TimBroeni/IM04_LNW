@@ -1,4 +1,9 @@
 <?php
+// Profil-Lese-API
+// - Liefert die aktuellen Profildaten des angemeldeten Nutzers zurück
+// - Wird von profil.html, profil.js und data.js verwendet
+// - Holt id, E-Mail, Vorname, Nachname und household_id aus der users-Tabelle
+// - Dient als Datenquelle für das Bearbeitungsformular
 session_start();
 
 header('Content-Type: application/json');
