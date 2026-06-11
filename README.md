@@ -54,16 +54,38 @@ Die Aktuelle Webapp, so wie sie jetzt steht, enthält die Basis unserer geplante
 
 ## Setup
 
-### Installationsanleitung WebApp //Bröner
+### Installationsanleitung WebApp
 
-***verständliche** Schritt-für-Schritt-Anleitung für Aussenstehende, um das Projekt zu klonen und auf einem eigenen Server zu installieren*
+#### Infrastruktur + Installation
+Für die Webapp wird ein Hosting mit einer Domain benötigt. Als Beispiel eignen sich Anbieter wie Infomaniak oder Hostpoint. Dort laufen sowohl die Webseite als auch die Datenbank. Die Webapp selbst besteht aus PHP, JavaScript sowie HTML/CSS.
+Zusätzlich wird eine MySQL-Datenbank benötigt, welche über das Hosting erstellt werden kann. Der Zugriff auf die Datenbank erfolgt über phpMyAdmin. Damit sich die Webseite mit der Datenbank verbinden kann, müssen die Zugangsdaten in der Datei config.php eingetragen werden. Dazu gehören der Host, der Datenbankname, der Benutzername sowie das Passwort.
+Wichtig ist, dass die config.php Datei nicht öffentlich auf GitHub hochgeladen wird, da sie sensible Zugangsdaten enthält. Deshalb sollte sie über die .gitignore Datei ausgeschlossen werden.
+Für die Zusammenarbeit im Team wurde GitHub verwendet. Alternativ könnte auch eine andere Plattform zur Versionsverwaltung genutzt werden. Der Code kann anschliessend über eine SFTP-Verbindung direkt auf den Webserver hochgeladen und synchronisiert werden.
+Die physische Sortino-Box benötigt ausserdem eine Stromversorgung sowie eine WLAN-Verbindung aus dem Haushalt, damit sie mit der Datenbank kommunizieren kann.
 
-1. *Was benötige ich an Infrastruktur?* 
-2. *Was muss ich auf meinem Webserver installieren?*  
-3. *Wie kann ich die Datenbank importieren?*  
-4. *Wo muss ich die DB-Credentials eintragen?*  
-5. *…*  
-6. *Wie nehme ich das physische Artefakt in Betrieb?*
+#### Datenbank importieren und verbinden
+Die Datenbank kann direkt über das Hosting erstellt werden. Danach werden die benötigten Tabellen in die Datenbank importiert. In unserem Fall enthält die Datenbank unter anderem Tabellen für Haushalte, Benutzer:innen, Kisten sowie Spielzeuge und das Heraus-/Zurücklegen der Spielzeuge.
+Im Projekt befindet sich zusätzlich eine db.sql Datei. Diese enthält die Struktur der gesamten Datenbank und kann über phpMyAdmin importiert werden. Dadurch werden alle benötigten Tabellen automatisch erstellt.
+Damit die Webapp auf diese Daten zugreifen kann, muss die Verbindung in der config.php Datei eingerichtet werden. Dort werden die Zugangsdaten der Datenbank eingetragen. Dazu gehören der Host, der Datenbankname, der Benutzername und das Passwort.
+Nach der erfolgreichen Verbindung kann die Webapp Daten lesen und neue Informationen abspeichern. Dazu gehören beispielsweise neue Haushalte, registrierte Kisten oder die gespeicherten Gewichte der Spielzeuge.
+Die Kommunikation zwischen der Sortino-Box und der Webapp läuft über die Datenbank. Die Box speichert neue Informationen direkt dort ab. Die Webapp liest diese Daten anschliessend aus und stellt sie für die Eltern übersichtlich dar.
+Dadurch kann später angezeigt werden:
+•	welche Spielzeuge momentan fehlen
+•	wann ein Spielzeug zuletzt verwendet wurde
+•	wie oft ein Spielzeug aus der Kiste genommen wurde
+•	welche Kisten zu einem Haushalt gehören
+Ein Haushalt kann mehrere Kisten besitzen. Die Daten (Spielzeuge) aller Kisten werden anschliessend gemeinsam in der Webapp dargestellt.
+
+#### Erststart der Webapp und Einrichtung
+Nach dem Kauf der Sortino-Box besucht der User zuerst die Sortino-Webseite. Die Startseite der Webapp ist gleichzeitig die Login- und Registrierungsseite.
+Zuerst wird ein Benutzerkonto mit Name, E-Mail-Adresse und Passwort erstellt. Nach dem ersten Login erkennt die Webapp, dass der Account noch keinem Haushalt zugeordnet ist.
+Anschliessend kann entweder einem bestehenden Haushalt über einen Code beigetreten oder ein neuer Haushalt erstellt werden. Beim Erstellen eines neuen Haushalts wird dessen Name in der Datenbank gespeichert und mit einer eigenen household_id versehen.
+Danach kann die gekaufte Sortino-Box hinzugefügt werden. Dazu wird die Seriennummer verwendet, welche auf der Unterseite der Box eingraviert ist. Diese Seriennummer ist bereits in der Datenbank vorhanden, jedoch noch keinem Haushalt zugewiesen.
+Sobald die Kiste erfolgreich verbunden wurde, kann ihr ein eigener Name gegeben werden. Dies ist beispielsweise sinnvoll, wenn mehrere Kinder oder mehrere Kisten in einem Haushalt vorhanden sind.
+Im letzten Schritt können Spielzeuge hinzugefügt werden. Dafür wird einem Spielzeug zuerst in der Webapp ein Name gegeben. Anschliessend wird das Spielzeug in die Kiste gelegt. Die Box erkennt die Gewichtsveränderung und speichert diese zusammen mit der passenden household_id in der Datenbank ab.
+Dadurch kann später erkannt werden, wann ein Spielzeug aus der Kiste genommen oder wieder zurückgelegt wurde.
+
+
 
 ### Bauanleitung Physical Computing
 
@@ -182,16 +204,18 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 }
 ```
 
-## Technische Details //Luc
+
+
+
+
+
+## Technische Details
 
 ### Komponentenplan
 
 ![Komponentenplan](readme-assets/Komponentenplan.png)
 
 ### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\] 
-
-TB: !!!!!!!! --> Kopfbereich
-```
 .
 ├── api                                         ← Alle Backend-Endpoints (geben JSON zurück)
 │   ├── physical                                ← Microcontroller Endpoints
@@ -315,7 +339,7 @@ TB: !!!!!!!! --> Kopfbereich
 ├── register.html                               ← xy...
 ├── settings.html                               ← xy...
 └── toys.html                                   ← xy...
-```
+
 
 ### Datenschnittstelle
 Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und der Webapp.
@@ -403,24 +427,65 @@ Der MC fragt alle drei Sekunden dem Server nach ob die Kisten im add_mode ist, u
     - `reward_id`
   - Beziehung:
     - Verknüpft Boxen mit Belohnungen und dokumentiert Punkte/Ereignisse.
-### Authentifizierung \[*Erklärung*\]
 
-## Known bugs //Alle
 
---> Wenn User sich selber aus DB löscht, ist er immernoch in dem Haushalt und wird nicht ausgeloggt
+### Authentifizierung
+Die Authentifizierung der Webapp basiert auf PHP-Sessions. Dadurch erhalten nur angemeldete Benutzer:innen Zugriff auf geschützte Seiten und ihre Daten.
+Das Login startet auf der `login.html` Seite. Die eingegebenen Login-Daten werden über `login.js` an `login.php` gesendet. Dort werden E-Mail-Adresse und Passwort mit den gespeicherten (und zum teil verschlüsselten) Daten aus der Datenbank verglichen. Für die Passwortprüfung wird `password_verify()` verwendet. Falls die Daten korrekt sind, startet `login.php` die Session. In den PHP-Dateien wird dafür jeweils `session_start()` benötigt, damit auf die Session zugegriffen werden kann. In der Session werden unter anderem `user_id`, E-Mail-Adresse und `household_id` gespeichert.
 
-!!!!!!!!!!!!!
+Beim Laden geschützter Seiten wird automatisch `auth.js` ausgeführt. Diese Datei sendet eine Anfrage an `auth.php`, um zu prüfen, ob noch eine gültige Session vorhanden ist. Falls keine gültige Session existiert, liefert `auth.php` einen `401 Unauthorized` Fehler zurück. `auth.js` leitet den User anschliessend automatisch zurück auf `login.html`. Falls die Session gültig ist, werden `user_id` und E-Mail-Adresse als JSON zurückgegeben.
 
-- Spielzeuge müssen noch nach Kisten sortiert werden
-- Die Auräumzeit könnte von den Eltern noch festgelegt werden
+Weitere Benutzerdaten werden über `profil.php` geladen und in `profil.js` zusammen mit `data.js` verwendet. Auch dort wird zuerst überprüft, ob eine gültige Session vorhanden ist. Die Abmeldung erfolgt über `logout.php`. Dabei wird die aktuelle Session gelöscht und der Benutzer ausgeloggt.
+
+Vereinfachter Datenfluss:
+`login.html → login.js → login.php → Datenbank → Session`
+
+Geschützte Seiten:
+`auth.js → auth.php → Sessionprüfung → Zugriff erlauben oder Login`
+
+
+
+
+
+## Known bugs / wichtige Ergänzungen
+
+### User löscht sich selber
+Wenn der aktuelle User sich selber aus dem Haushalt entfernen möchte, funktioniert das. Das ist in erster Linie bereits ein wenig fragwürdig. Andererseits wird er dann nicht zurück zu login.html zurückgeschickt, sondern bleibt in der Webapp drinn. Aber da er keinem Haushalt zugehörig ist, werden keine Daten angezeigt und es ist einfach alles auf "0" oder leer.
+
+### Noch keine Spielzeuge
+Wenn der User einen neuen Haushalt erstellt, die Spielzeuge aber ist in einem zweiten Schritt hinzufügt, wird ihm auf dem Dashboard trotzdem in grün "Alles aufgeräumt" angezeigt. Optimal wäre wenn hier wie bei toys.html stehen würde, dass zuerst ein Spielzeug hinzugefügt werden sollte.
+
+### Spielzeuge nach Kiste sortieren
+Aktuell werden unter toys.html alle Spielzeuge untereinander aufgelistet. Hat der User aber 3 Kisten mit je 20 Spielzeuge kann das etwas unübersichtlich werden. Hier wäre ein Button, der nach Kiste A, B oder C filtern könnte optimal für eine bessere Übersicht.
+
+### Aufräumzeit verwalten
+Aktuell fehlt in den Einstellungen noch die Möglichkeit die Uhrzeit einzustellen, bei der das Kind alles aufgerämt haben muss. 
+
+### Spielzeuge hinzufügen
+Wir sind uns unsicher, ob das "+" unter toys.html genügen versätnlich ist. Hiermit sollen neue Spielzeuge hinzugefügt werden. Evtl wäre es besser gewesen dies auszuschreiben, damit es direkt erkennbar wird.
 
 * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  
 * Was könnte noch verbessert werden?
 
+
+
+
 ## Umsetzungsprozess //Alle
 
-!!!!!!!!!!!!!!
+### Zu viel vorgenommen
+Zu Beginn waren wir deutlich übermotiviert. Es wäre sehr toll gewesen alle Features und Details umzusetzen. Das wäre aber leider deutlich zu viel Arbeit für uns geworden. Dementsprechend sind wir aber happy mit dem Endresultat wie es herausgekommen ist. Trotzdem juckt es aber in den Fingern weiterzumachen und alle möglichen Funktionen noch ergänzen.
+
+### KI-Nutzung
+Vergangene Semester habe ich häufig mit ChatGPT gearbeitet. Dort jeweils mühsam den gesamten Code hochgeladen und versucht herauszufinden was ich wo jetzt neu einfügen muss, damit das Problem gelöst werden konnte. Das war bei diesem Projekt zu Beginn ebenfalls der fall, bis ich den Copilot in VS Code entdeckte. 
+Ich finde es großartig, dass man bestimmte Dateien wie register.html und register.js auswählen, einen Prompt formulieren und den Code lesen und bearbeiten kann. So ist es immer klar was die KI berücksichtigen sollte und für mich einfacher nicht alles 100x kopieren und einfügen zu müssen. 
+Mithilfe der KI hat der Programmieraspekt auch wirklich Spass gemacht. Man musste sich immernoch überlegen was will ich genau erreichen. Was brauche ich aus der DB und wie will ich es nutzen um mir etwas in der Webapp anzeigen zu lassen. Aber der schwierige Schreibaspekt mit der immernoch komplizierten Syntax wurde erleichtert.
+Grundsätzlich habe ich immer überprüft was die KI jetzt neu gecodet / gelöscht hat. So habe ich vermieden, dass er alles löscht und dabei eig mein Prompt falsch verstanden hatte. Mit der Zeit nahm aber das Vertrauen in Copilot zu und ich überprüfte weniger seinen Code und war ehrlich gesagt wengier gewollt alles verstehen zu wollen.
+Mit diesem Tool an der Seite fühlt sich IM aber deutlich weniger kompliziert, weniger stressig und effektiv machbar an, was ein schönes Gefühl ist :D. 
+
+### Fazit
+Das Projekt hat alles in allem eigentlich Spass gemacht. Vorallem in jenen Momenten, als die Webapp mit der Box harmoniesiert hat und wir Spielzeuge versorgen und hinausnehmen konnten. Der Start war mühsahm, als man wieder in den IM-Modus hineinfinden musste. Sobald aber bei der Webapp der Login/Registrierung/Session Aspekt erledigt war, wurde es weniger kompliziert und machbarer. 
+Es ist aber ein tolles Gefühl so eine Webapp entwickelt zu haben, die wirklich so (natürlich noch etwas ausgebauter) auf dem Markt sein könnte, und es vergleichbar  viele ähnliche FUnktionen hat. 
 
 * **Reflexion / Erfahrung / Lernfortschritt:** *Was haben wir gelernt? Würden wir es nochmal genauso machen? Was war gut, was war schlecht?*  
 * **Herausforderungen & Lösungen:** \[*Verworfene Ansätze, Fehler, Umplanungen*\]  
