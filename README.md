@@ -216,6 +216,8 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 ![Komponentenplan](readme-assets/Komponentenplan.png)
 
 ### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\] 
+
+```
 .
 ├── api                                         ← Alle Backend-Endpoints (geben JSON zurück)
 │   ├── physical                                ← Microcontroller Endpoints
@@ -339,7 +341,7 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 ├── register.html                               ← xy...
 ├── settings.html                               ← xy...
 └── toys.html                                   ← xy...
-
+```
 
 ### Datenschnittstelle
 Die `toy_events` und `boxes` Tabellen dienen zur Schnittstelle zwischen das Microcontroller und der Webapp.
