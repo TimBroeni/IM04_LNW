@@ -376,7 +376,7 @@ body.app-page #toyList li > .toy_usage_count {
 }
 
 body.app-page #toyList li > .toy_status {
-  grid-column: 1;
+  grid-column: 1 / 2;
   grid-row: 3;
   justify-self: start;
   margin: 0;
@@ -394,11 +394,9 @@ body.app-page #toyList li > .toy_status.toy_status--in-box {
 }
 
 body.app-page #toyList li > .toy_lastUsed {
-  grid-column: 2;
-  grid-row: 3;
-  align-self: center;
-  margin: 0;
-  padding: 6px 0;
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin: 2px 0 0;
   font-size: 0.84rem;
 }
 
