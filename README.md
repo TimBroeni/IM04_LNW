@@ -469,6 +469,9 @@ Wir sind uns unsicher, ob das "+" unter toys.html genügen versätnlich ist. Hie
 ### RFID statt Gewicht
 Es wäre definitiv sinnvoller mit RFID statt mit einer Waage zu arbeiten. Die Waage funktioniert nur dann gut, wenn die Spielzeuge mit etwas Schwung hineingelegt werden. Nur so checkt die Waage, dass ein Unterschied entstanden ist und kann das Spielzeug korrekt bemessen. RFID's wären genauer und würden auch mehrere Spielsachen gleichzeitig erkennen.
 
+### Nutzungshäufigkeits-Tabelle
+Aktuell werden immer alle Spielzeuge angezeigt. Egal ob sie vor 7 Tagen verwendet wurden oder nicht. Optimaler wäre, wenn nur Spielsachen angezeigt werden, die in den letzten 7 Tagen auch wirklich genutzt wurden. Evtl schadet dies ein wenig der Übersichtlichkeit. Aber das liegt aktuell vermutlich daran, dass es jeweils nur sehr wenige Spielzeuge sind.
+
 <!-- * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  
 * Was könnte noch verbessert werden? -->
