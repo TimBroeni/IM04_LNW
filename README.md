@@ -213,7 +213,7 @@ curl -X GET 'https://im04.tim-broenimann.ch/api/physical/[seriennumer]/status'
 
 ### Komponentenplan
 
-![Komponentenplan](readme-assets/Komponentenplan.png)
+![Komponentenplan](readme-assets/Komponentenplan_IM04_Sortinio.png)
 
 ### Projektstruktur / Code-Struktur \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\] 
 
@@ -466,9 +466,12 @@ Aktuell fehlt in den Einstellungen noch die Möglichkeit die Uhrzeit einzustelle
 ### Spielzeuge hinzufügen
 Wir sind uns unsicher, ob das "+" unter toys.html genügen versätnlich ist. Hiermit sollen neue Spielzeuge hinzugefügt werden. Evtl wäre es besser gewesen dies auszuschreiben, damit es direkt erkennbar wird.
 
-* Was funktioniert noch nicht einwandfrei?  
+### RFID statt Gewicht
+Es wäre definitiv sinnvoller mit RFID statt mit einer Waage zu arbeiten. Die Waage funktioniert nur dann gut, wenn die Spielzeuge mit etwas Schwung hineingelegt werden. Nur so checkt die Waage, dass ein Unterschied entstanden ist und kann das Spielzeug korrekt bemessen. RFID's wären genauer und würden auch mehrere Spielsachen gleichzeitig erkennen.
+
+<!-- * Was funktioniert noch nicht einwandfrei?  
 * Was ist uns aufgefallen bei der Entwicklung?  
-* Was könnte noch verbessert werden?
+* Was könnte noch verbessert werden? -->
 
 
 
@@ -482,14 +485,15 @@ Zu Beginn waren wir deutlich übermotiviert. Es wäre sehr toll gewesen alle Fea
 Vergangene Semester habe ich häufig mit ChatGPT gearbeitet. Dort jeweils mühsam den gesamten Code hochgeladen und versucht herauszufinden was ich wo jetzt neu einfügen muss, damit das Problem gelöst werden konnte. Das war bei diesem Projekt zu Beginn ebenfalls der fall, bis ich den Copilot in VS Code entdeckte. 
 Ich finde es großartig, dass man bestimmte Dateien wie register.html und register.js auswählen, einen Prompt formulieren und den Code lesen und bearbeiten kann. So ist es immer klar was die KI berücksichtigen sollte und für mich einfacher nicht alles 100x kopieren und einfügen zu müssen. 
 Mithilfe der KI hat der Programmieraspekt auch wirklich Spass gemacht. Man musste sich immernoch überlegen was will ich genau erreichen. Was brauche ich aus der DB und wie will ich es nutzen um mir etwas in der Webapp anzeigen zu lassen. Aber der schwierige Schreibaspekt mit der immernoch komplizierten Syntax wurde erleichtert.
-Grundsätzlich habe ich immer überprüft was die KI jetzt neu gecodet / gelöscht hat. So habe ich vermieden, dass er alles löscht und dabei eig mein Prompt falsch verstanden hatte. Mit der Zeit nahm aber das Vertrauen in Copilot zu und ich überprüfte weniger seinen Code und war ehrlich gesagt wengier gewollt alles verstehen zu wollen.
+Grundsätzlich habe ich immer überprüft was die KI jetzt neu gecodet / gelöscht hat. So habe ich vermieden, dass er aus welchen Gründen (vermutlich aufgrund meines unvollständigen Promptes) alles löscht und dabei eig mein Prompt falsch verstanden hatte. Mit der Zeit nahm aber das Vertrauen in Copilot zu und ich überprüfte weniger seinen Code und war ehrlich gesagt wengier gewollt alles verstehen zu wollen.
+Jedenfalls habe ich den Code zu Beginn nicht direkt angenommen, sondern zuerst auf dem Browser getestet. Erst wenn es funktioniert hatte, nahm ich es an. Zum Teil habe ich den neuen Code auch ChatGPT als Zweitmeinung dazugezogen, ob und warum ein gewisser neuer Codeteil entstanden ist. Das hat sehr gut und effizient funktioniert.
 Mit diesem Tool an der Seite fühlt sich IM aber deutlich weniger kompliziert, weniger stressig und effektiv machbar an, was ein schönes Gefühl ist :D. 
 
 ### Fazit
 Das Projekt hat alles in allem eigentlich Spass gemacht. Vorallem in jenen Momenten, als die Webapp mit der Box harmoniesiert hat und wir Spielzeuge versorgen und hinausnehmen konnten. Der Start war mühsahm, als man wieder in den IM-Modus hineinfinden musste. Sobald aber bei der Webapp der Login/Registrierung/Session Aspekt erledigt war, wurde es weniger kompliziert und machbarer. 
-Es ist aber ein tolles Gefühl so eine Webapp entwickelt zu haben, die wirklich so (natürlich noch etwas ausgebauter) auf dem Markt sein könnte, und es vergleichbar  viele ähnliche FUnktionen hat. 
+Es ist aber ein tolles Gefühl so eine Webapp entwickelt zu haben, die wirklich so (natürlich noch etwas ausgebauter) auf dem Markt sein könnte, und es vergleichbar mit bestehenden Apps viele ähnliche Funktionen enthält. 
 
-* **Reflexion / Erfahrung / Lernfortschritt:** *Was haben wir gelernt? Würden wir es nochmal genauso machen? Was war gut, was war schlecht?*  
+<!-- * **Reflexion / Erfahrung / Lernfortschritt:** *Was haben wir gelernt? Würden wir es nochmal genauso machen? Was war gut, was war schlecht?*  
 * **Herausforderungen & Lösungen:** \[*Verworfene Ansätze, Fehler, Umplanungen*\]  
 * **KI-Einsatz:** *Dokumentation der verwendeten KI-Tools und deren Nutzen (KI ist nicht verboten)*  
-* **Fazit:** …
+* **Fazit:** … -->
